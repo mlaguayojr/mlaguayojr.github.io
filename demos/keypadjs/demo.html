@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Github - mlaguayojr</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="keypad.css" rel="stylesheet">
+
+</head>
+
+<style>
+    body {
+        background: lightslategray;
+        font-family: 'Raleway', sans-serif;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
+<body class="container">
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">Below are a few examples of how to use keypad.js</p>
+            <hr>
+            <br>
+            <label>Example 1: Defaults</label>
+            <div id="example1"></div>
+            <br>
+            <label>Example 2: Text Type</label>
+            <div id="example2"></div>
+            <br>
+            <label>Example 3: Increased Limit</label>
+            <div id="example3"></div>
+            <br>
+            <label>Example 4: One Time Shuffled Keypad</label>
+            <div id="example4"></div>
+            <br>
+            <label>Example 5: Shuffle Everytime Keypad</label>
+            <div id="example5"></div>
+            <br>
+        </div>
+    </div>
+
+    <script src="keypad.js"></script>
+    <script>
+        $("#example1").keypad();
+        $("#example2").keypad({ type: "text" });
+        $("#example3").keypad({ type: "text", limit: 10 });
+        $("#example4").keypad({ type: "text", shuffle: true });
+        $("#example5").keypad({ type: "text", shuffle: "always" });
+    </script>
+</body>
+
+</html>
