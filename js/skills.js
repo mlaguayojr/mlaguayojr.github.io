@@ -1,13 +1,26 @@
 const skillsData = {
   skills: [
-    { name: "JavaScript" },
-    { name: "HTML & CSS" },
-    { name: "Python" },
     { name: "React" },
-    { name: "Node.js" },
+    { name: "TypeScript" },
+    { name: "Jest" },
+    { name: "Vite" },
+    { name: "TanStack Query" },
+    { name: "HTML" },
+    { name: "CSS" },
+    { name: "C#/.NET" },
+    { name: "Entity Framework" },
+    { name: "SQL Server" },
+    { name: "Terraform" },
+    { name: "Airflow" },
+    { name: "Docker" },
+    { name: "Python" },
+    { name: "PowerShell" },
+    { name: "Bash" },
+    { name: "Visual Studio" },
     { name: "Git" },
-    { name: "SQL" },
-    { name: "REST APIs" }
+    { name: "ASP.NET" },
+    { name: "RESTful API Design" },
+    { name: "Azure DevOps Pipelines" }
   ]
 };
 
