@@ -7,6 +7,7 @@ const careerData = {
       location: "Remote",
       title: "Full Stack Software Engineer",
       duration: { start: "July 2022", end: "Present" },
+      skills: ["C#/.NET", "ASP.NET", "React", "TypeScript", "TanStack Query", "Entity Framework", "Azure", "Terraform", "Azure DevOps Pipelines", "Tailwind CSS", "SQL Server", "Jest", "Vite", "Airflow", "Docker", "Python", "RESTful API Design", "Confluence", "HTML", "CSS", "PowerShell", "Bash", "Visual Studio", "Git", "Postman", "Bruno"],
       content: [
         {
           topic: "Engineered Core Data Platform, a self-service ETL application empowering users to extract datasets from the Solovis ecosystem.",
@@ -43,6 +44,7 @@ const careerData = {
       location: "Newington, CT",
       title: "Security Engineer",
       duration: { start: "October 2020", end: "June 2022" },
+      skills: ["Splunk", "Tenable.SC", "Linux", "Active Directory", "KACE SMA", "bash"],
       content: [
         {
           topic: "Implemented Linux-based infrastructure for Splunk, a logging and SIEM system to lower operational costs and improve monitoring.",
@@ -61,7 +63,7 @@ const careerData = {
           topic: "Performed enterprise system administration, security analysis, and group management.",
           subtopic: [
             "Utilized KACE SMA for patching, asset management, and security across IT environments.",
-            "Maintained Azure Directory Group Policies, matching job roles and responsibilities to reflect internal structural changes."
+            "Maintained Active Directory Group Policies, matching job roles and responsibilities to reflect internal structural changes."
           ]
         }
       ]
@@ -71,6 +73,7 @@ const careerData = {
       location: "Newington, CT",
       title: "Jr. Software Developer & Production Support",
       duration: { start: "July 2018", end: "June 2020" },
+      skills: ["VB6", "VB.NET", "Microsoft Access", "SSRS", "SQL Server", "C#/.NET"],
       content: [
         {
           topic: "Maintained and implemented requested features within home-grown legacy applications.",

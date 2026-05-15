@@ -1,8 +1,15 @@
 <div class="project-list">
   {{#posts}}
   <div class="project-card">
-    {{#href}}<a href="{{href}}">{{title}}</a>{{/href}}{{^href}}{{title}}{{/href}}
+    <div class="post-header">
+      <span class="post-date">{{date}}</span>
+      <span class="post-separator"> · </span>
+      {{#href}}<a href="{{href}}">{{title}}</a>{{/href}}{{^href}}{{title}}{{/href}}
+    </div>
     <p>{{summary}}</p>
+    <footer class="post-footer">
+      {{#tags}}<span class="post-tag">#{{.}}</span>{{/tags}}
+    </footer>
   </div>
   {{/posts}}
 </div>

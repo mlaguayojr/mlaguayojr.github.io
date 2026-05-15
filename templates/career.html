@@ -1,10 +1,9 @@
-<h2>Career</h2>
 <div class="career-list">
   {{#career}}
   <div class="career-entry">
     <div class="career-header">
-      <span class="career-name">{{name}}{{#superscript}}<sup>{{superscript}}</sup>{{/superscript}}</span>
-      <span class="career-duration">{{duration.start}} – {{duration.end}}</span>
+      <span class="career-name">{{name}}{{#superscript}}<sup><small>{{superscript}}</small></sup>{{/superscript}}</span>
+      <span class="career-duration">{{duration.start}} &mdash; {{duration.end}}</span>
     </div>
     <div class="career-title">{{title}} &middot; {{location}}</div>
     <ul class="career-content">
@@ -20,6 +19,9 @@
       {{/content}}
     </ul>
     {{#footnote}}<p class="career-footnote"><sup>{{superscript}}</sup> {{footnote}}</p>{{/footnote}}
+    <footer class="career-skills">
+      {{#skills}}<span class="skill-tag">{{.}}</span>{{/skills}}
+    </footer>
   </div>
   {{/career}}
 </div>

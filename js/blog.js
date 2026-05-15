@@ -2,7 +2,9 @@ const blogData = {
   posts: [
     {
       title: "2026 face lift",
-      summary: "🏗️ Under construction!"
+      date: "2026-05-15",
+      summary: "🏗️ Under construction! Time to revamp this portfolio!",
+      tags: ["design"]
     }
   ]
 };
