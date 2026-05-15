@@ -1,0 +1,8 @@
+<div class="project-list">
+  {{#posts}}
+  <div class="project-card">
+    {{#href}}<a href="{{href}}">{{title}}</a>{{/href}}{{^href}}{{title}}{{/href}}
+    <p>{{summary}}</p>
+  </div>
+  {{/posts}}
+</div>

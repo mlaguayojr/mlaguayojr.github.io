@@ -1,0 +1,21 @@
+<img class="avatar" src="/avatar.jpg" alt="Mario L. Aguayo Jr." />
+
+<div>
+  <div class="sidebar-name">{{name}}</div>
+  <div class="sidebar-tagline">{{tagline}}</div>
+</div>
+
+<p class="sidebar-bio">{{bio}}</p>
+
+<nav>
+  <ul>
+    {{#links}}
+    <li>
+      <a href="{{href}}"{{#external}} target="_blank" rel="noopener"{{/external}}>
+        {{{icon}}}
+        {{label}}
+      </a>
+    </li>
+    {{/links}}
+  </ul>
+</nav>

@@ -1,0 +1,266 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sidebar-width: 260px;
+  --accent: #1a7abf;
+  --text: #333;
+  --muted: #666;
+  --border: #e0e0e0;
+  --bg: #fff;
+  --sidebar-bg: #f8f8f8;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+aside {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  padding: 2.5rem 1.75rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sidebar-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 2;
+}
+
+.sidebar-tagline {
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.sidebar-bio {
+  font-size: .875rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .9rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+nav a:hover { color: var(--accent); }
+
+nav a svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+/* ── Main nav ── */
+.main-nav {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: .75rem;
+}
+
+.main-nav a {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.main-nav a:hover,
+.main-nav a.active { color: var(--accent); }
+
+/* ── Main content ── */
+main {
+  flex: 1;
+  padding: 3rem 3.5rem;
+  max-width: 780px;
+}
+
+section { margin-bottom: 3rem; }
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: .35rem;
+  margin-bottom: 1.1rem;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: .25rem;
+}
+
+p { margin-bottom: .85rem; }
+p:last-child { margin-bottom: 0; }
+
+/* Skills grid */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.skill-tag {
+  background: #f0f4f8;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: .25rem .65rem;
+  font-size: .82rem;
+}
+
+/* Projects */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.project-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+}
+
+.project-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#blog .project-card a,
+#blog .project-card {
+  text-transform: capitalize;
+}
+
+.project-card a:hover { text-decoration: underline; }
+
+.project-card p {
+  font-size: .9rem;
+  color: var(--muted);
+  margin-top: .2rem;
+  margin-bottom: 0;
+}
+
+/* Career */
+.career-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.career-entry {
+  border-left: 3px solid transparent;
+  padding: .75rem 1rem;
+}
+
+.career-entry:nth-child(-n+3) {
+  border-left-color: var(--accent);
+}
+
+.career-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: .2rem;
+}
+
+.career-name {
+  font-weight: 700;
+  font-size: .95rem;
+}
+
+.career-duration {
+  font-size: .8rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.career-title {
+  font-size: .875rem;
+  color: var(--muted);
+  margin-bottom: .5rem;
+}
+
+.career-content {
+  font-size: .9rem;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+
+.career-footnote {
+  font-size: .75rem;
+  color: var(--muted);
+  margin-top: .75rem;
+  border-top: 1px solid var(--border);
+  padding-top: .5rem;
+}
+
+.career-subtopic {
+  padding-left: 1.25rem;
+  margin-top: .25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  color: var(--muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  body { flex-direction: column; }
+
+  aside {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 1.75rem 1.5rem;
+  }
+
+  main { padding: 2rem 1.5rem; }
+}
