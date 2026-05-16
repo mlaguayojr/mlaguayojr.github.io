@@ -3,7 +3,7 @@ const projectsData = {
     {
       name: "keypad.js",
       href: "https://github.com/mlaguayojr/keypad.js",
-      date: "2024-01-01",
+      date: "2019-02-03",
       description: "A lightweight JavaScript numeric keypad widget. No dependencies.",
       tags: ["javascript", "jquery"]
     },
