@@ -56,7 +56,7 @@ const careerData = {
         {
           topic: "Implemented Tenable.SC, a vulnerability management platform to secure and monitor our company network.",
           subtopic: [
-            "Implemented Dashboards to review vulnerabilities and plan remediations across company devices to support security needs and SLAs."
+            "Implemented Dashboards to review vulnerabilities and plan remediation across company devices to support security needs and SLAs."
           ]
         },
         {
@@ -91,6 +91,65 @@ const careerData = {
           topic: "Developed automation to expedite Mail Production workflow supporting other systems.",
           subtopic: [
             "Implemented capabilities to access, download, and scrape PDFs from USPS site to feed enterprise applications."
+          ]
+        }
+      ]
+    },
+    {
+      name: "The Network Support Company",
+      location: "Danbury, CT",
+      title: "Associate Developer",
+      duration: { start: "June 2017", end: "April 2018" },
+      skills: ["PHP", "Yii", "JavaScript", "Three.js", "Python", "WebFocus", "SQL Server"],
+      content: [
+        {
+          topic: "Converted existing WebFocus, Python, and MSSQL reports for use in frontend dashboards using the Yii PHP framework."
+        },
+        {
+          topic: "Utilized Three.js to render and interact with 3D CAD files directly within a web page."
+        },
+        {
+          topic: "Built a wrapper solution to integrate an internal CRM with a third-party vendor's software using PHP."
+        }
+      ]
+    },
+    {
+      name: "O2 Safe Solutions",
+      location: "Wallingford, CT",
+      title: "IT Coordinator",
+      duration: { start: "April 2015", end: "June 2017" },
+      skills: ["Java", "Python", "ADB", "Batch/MS-DOS", "Google Maps API", "Windows CE", "PocketPC"],
+      content: [
+        {
+          topic: "Created applications to replace manual, time-consuming processes across driver and invoicing workflows.",
+          subtopic: [
+            "Built a Java application to automate the configuration of PocketPCs for drivers, eliminating a tedious manual setup process.",
+            "Developed a Java GUI and Python shell tool to detect and correct user-based miscalculations in exported invoices."
+          ]
+        },
+        {
+          topic: "Automated device configuration and remote access management.",
+          subtopic: [
+            "Wrote Python shell scripts using ADB to automate the configuration process of Android tablets.",
+            "Created and maintained batch (MS-DOS) scripts for LogMeIn remote access management."
+          ]
+        },
+        {
+          topic: "Utilized Google's Distance Matrix API to visualize area of coverage for branch locations."
+        }
+      ]
+    },
+    {
+      name: "Nasdaq",
+      location: "Shelton, CT",
+      title: "InfoSec Intern",
+      duration: { start: "June 2014", end: "August 2014" },
+      skills: ["Splunk", "Imperva", "Sourcefire", "SevOne", "DBNetworks", "CyberArk", "RedSeal"],
+      content: [
+        {
+          topic: "Exposure to industry recognized access management and security solutions.",
+          subtopic: [
+            "Assessed tools spanning SIEM, database security, network monitoring, and privileged access management: Splunk, Imperva, Sourcefire, SevOne, DBNetworks, CyberArk, and RedSeal."
           ]
         }
       ]
