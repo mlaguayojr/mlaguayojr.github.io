@@ -72,7 +72,7 @@ const careerData = {
       name: "Data-Mail",
       location: "Newington, CT",
       title: "Jr. Software Developer & Production Support",
-      duration: { start: "July 2018", end: "June 2020" },
+      duration: { start: "July 2018", end: "October 2020" },
       skills: ["VB6", "VB.NET", "Microsoft Access", "SSRS", "SQL Server", "C#/.NET"],
       content: [
         {
@@ -117,7 +117,7 @@ const careerData = {
       name: "O2 Safe Solutions",
       location: "Wallingford, CT",
       title: "IT Coordinator",
-      duration: { start: "April 2015", end: "June 2017" },
+      duration: { start: "June 2015", end: "June 2017" },
       skills: ["Java", "Python", "ADB", "Batch/MS-DOS", "Google Maps API", "Windows CE", "PocketPC"],
       content: [
         {
@@ -136,6 +136,9 @@ const careerData = {
         },
         {
           topic: "Utilized Google's Distance Matrix API to visualize area of coverage for branch locations."
+        },
+        {
+          topic: "Help Desk/IT Support"
         }
       ]
     },
@@ -143,7 +146,7 @@ const careerData = {
       name: "Nasdaq",
       location: "Shelton, CT",
       title: "InfoSec Intern",
-      duration: { start: "June 2014", end: "August 2014" },
+      duration: { start: "May 2014", end: "August 2014" },
       skills: ["Splunk", "Imperva", "Sourcefire", "SevOne", "DBNetworks", "CyberArk", "RedSeal"],
       content: [
         {
