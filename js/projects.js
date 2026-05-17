@@ -11,7 +11,7 @@ const projectsData = {
       name: "Simple Weather Dashboard",
       href: "https://github.com/mlaguayojr/Simple-Weather-Dashboard",
       date: "2026-05-15",
-      description: "A minimal weather dashboard built with React 19 and Tailwind CSS. Displays current conditions &mdash; temperature, humidity, wind, and more &mdash; for a configurable location via environment variables.",
+      description: "A minimal weather dashboard built with React 19 and Tailwind CSS. Displays current conditions — temperature, humidity, wind, and more — for a configurable location via environment variables.",
       tags: ["react", "tailwind", "api"]
     },
 
