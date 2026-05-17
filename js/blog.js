@@ -13,6 +13,13 @@ const blogData = {
       href: "pages/2026-portfolio-redesign/2026-portfolio-redesign.html",
       summary: "🏗️ Under construction! Time to revamp this portfolio!",
       tags: ["design"]
+    },
+    {
+      title: "Academic Google Calendar Creator",
+      date: "2017-12-29",
+      href: "pages/academic-google-calendar-creator/academic-google-calendar-creator.html",
+      summary: "A Python script that logs into SCSU's BannerWeb, scrapes your registered courses, and exports them as an .ics file ready to import into Google Calendar.",
+      tags: ["python", "automation", "web scraping"]
     }
   ]
 };
