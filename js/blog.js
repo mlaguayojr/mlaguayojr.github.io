@@ -17,10 +17,28 @@ const blogData = {
   ]
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('/templates/blog/post-summary.html')
-    .then(res => res.text())
-    .then(template => {
-      document.getElementById('blog').innerHTML = Mustache.render(template, blogData);
-    });
+async function computeReadingTime(href) {
+  const res = await fetch(href);
+  const html = await res.text();
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const body = doc.querySelector('#post-body') || doc.body;
+  const words = body.textContent.trim().split(/\s+/).filter(w => w.length > 0);
+  return Math.max(1, Math.ceil(words.length / 200));
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  await Promise.all(
+    blogData.posts.map(async post => {
+      if (!post.href) return;
+      try {
+        post.readingTime = await computeReadingTime(post.href);
+      } catch {
+        // silently skip if fetch fails
+      }
+    })
+  );
+
+  const res = await fetch('/templates/blog/post-summary.html');
+  const template = await res.text();
+  document.getElementById('blog').innerHTML = Mustache.render(template, blogData);
 });

@@ -173,7 +173,8 @@ p:last-child { margin-bottom: 0; }
 }
 
 #blog .post-date,
-#blog .post-separator {
+#blog .post-separator,
+#blog .reading-time {
   text-transform: none;
 }
 
@@ -193,7 +194,8 @@ p:last-child { margin-bottom: 0; }
   flex-wrap: wrap;
 }
 
-.post-date {
+.post-date,
+.reading-time {
   font-size: .8rem;
   color: var(--muted);
   white-space: nowrap;
