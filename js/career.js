@@ -7,7 +7,7 @@ const careerData = {
       location: "Remote",
       title: "Full Stack Software Engineer",
       duration: { start: "July 2022", end: "Present" },
-      skills: ["C#/.NET", "ASP.NET", "React", "TypeScript", "TanStack Query", "Entity Framework", "Azure", "Terraform", "Azure DevOps Pipelines", "Tailwind CSS", "SQL Server", "Jest", "Vite", "Airflow", "Docker", "Python", "RESTful API Design", "Confluence", "HTML", "CSS", "PowerShell", "Bash", "Visual Studio", "Git", "Postman", "Bruno"],
+      skills: ["C#/.NET", "ASP.NET", "React", "TypeScript", "TanStack Query", "Entity Framework", "Azure", "Terraform", "Azure DevOps Pipelines", "Tailwind CSS", "SQL Server", "Jest", "Vite", "Airflow", "Docker", "Python", "RESTful API Design", "Confluence", "HTML", "CSS", "PowerShell", "Bash", "Visual Studio", "Git", "Postman", "Bruno", "GitHub Copilot", "Claude", "Cypress", "Playwright"],
       content: [
         {
           topic: "Engineered Core Data Platform, a self-service ETL application empowering users to extract datasets from the Solovis ecosystem.",

@@ -4,7 +4,7 @@ const blogData = {
       title: "Nouse eCalendar",
       date: "2026-05-16",
       href: "pages/nouse-anyuse-ecalendar/nouse-ecalendar.html",
-      summary: "Making an eCalendar stay connected to WiFi - you know, the bare minimum.",
+      summary: "Making an eCalendar stay connected to WiFi — you know, the bare minimum.",
       tags: ["hacking","android"]
     },
     {
