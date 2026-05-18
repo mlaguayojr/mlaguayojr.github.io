@@ -118,21 +118,19 @@
           <li><code>getpass</code> (part of the standard library)</li>
         </ul>
         <br>
-        A typical session looks like this:
-        <br><br>
-        <code>scsu = SCSU()</code>
+        <p>A typical session looks like this:</p>
+        <div class="code-block">
+          <pre>scsu = SCSU()
+scsu.user()                       # prompts for your username and PIN
+scsu.login()
+scsu.listSemesters()              # prints the 5 most recent semesters and their codes
+scsu.downloadSemester("201740")   # exports Spring 2017 as an .ics file
+scsu.logout()</pre>
+        </div>
         <br>
-        <code>scsu.user()</code> &mdash; prompts for your username and PIN
-        <br>
-        <code>scsu.login()</code>
-        <br>
-        <code>scsu.listSemesters()</code> &mdash; prints the 5 most recent semesters and their codes
-        <br>
-        <code>scsu.downloadSemester("201740")</code> &mdash; exports Spring 2017 as an .ics file
-        <br>
-        <code>scsu.logout()</code>
-        <br><br>
-        Import the resulting file into Google Calendar and you're done.
+        <p>
+          Import the resulting file into Google Calendar and you're done. Took about a minute instead of twenty.
+        </p>
       </div>
     </section>
   </main>

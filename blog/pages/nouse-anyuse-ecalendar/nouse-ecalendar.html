@@ -74,10 +74,12 @@
         <h2 id="research">Research</h2>
 
         <h3 id="whats-in-the-box">What's in the box?</h3>
-        Here's the <a href="https://myecalendar.com/content/calendar_user_manual.pdf">user manual</a> for the device.
-        However, there's nothing helpful for what I'm looking for. My assumption is that this is an Android device, but
-        I'm unsure of what version.
-        But there's hope! I found a post describing how to access a hidden System Settings screen.
+        <p>
+          Here's the <a href="https://myecalendar.com/content/calendar_user_manual.pdf">user manual</a> for the device.
+          However, there's nothing helpful for what I'm looking for. My assumption is that this is an Android device,
+          but I'm unsure of what version. After poking around some posts on their Facebook page, I found a way to access
+          a hidden System Settings screen.
+        </p>
 
         <h3 id="system-settings">System Settings</h3>
         <ol>
@@ -126,6 +128,7 @@
         in the past and have experience with a utility called <a href="https://developer.android.com/tools/adb">ADB
           (Android Debugging Bridge)</a>.
         <br>
+        <br>
         Let's attempt to connect:
         <figure class="screenshot">
           <img src="./adb.png" alt="ADB connection to the Anyuse eCalendar" />
@@ -148,14 +151,14 @@
           <br>
           <br>
           <code>adb shell am start "net.dinglisch.android.taskerm"</code> will launch the application.
-          <br><br><u>Update 1:</u>
+          <br><br><strong>Update 1:</strong>
           <br>
           Sadly, I've had to abandon Tasker due to needing a license in order to use it more than the trial period of 7
           days.
           I'm going to uninstall and try <a href="https://play.google.com/store/apps/details?id=com.llamalab.automate"
             target="_blank">Automate</a> instead.
           <br><br>
-          <u>Update 2:</u>
+          <strong>Update 2:</strong>
           <br>
           After uninstalling Tasker, I sideloaded <b>Automate</b> the same way.
           <br>
@@ -180,6 +183,7 @@
         <h2 id="outcome">Outcome</h2>
         <p>
           I'm not happy with this outcome, but I'll have to take the "L" for now. I guess I have a digital photo frame.
+          Maybe rooting it is the next rabbit hole.
         </p>
 
         <h2 id="notes">Notes</h2>
@@ -190,7 +194,6 @@
           <li><code>adb shell screencap -p /sdcard/screen.png</code> captures the current screen and saves it to the
             device's SD card.</li>
           <li><code>adb pull /sdcard/screen.png</code> then pulls that file down to your local machine.</li>
-          <li><code>adb install file.apk</code> to push and install APK file.</li>
         </ul>
         </p>
       </div>
