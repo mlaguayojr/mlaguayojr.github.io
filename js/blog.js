@@ -1,6 +1,13 @@
 const blogData = {
   posts: [
     {
+      title: "Nouse eCalendar, Part 2",
+      date: "2026-05-20",
+      href: "pages/nouse-ecalendar-part-2/nouse-ecalendar-part-2.html",
+      summary: "Hardware debugging is outside my wheelhouse — so I handed the logs to Claude to figure out why this WiFi chip keeps dying.",
+      tags: ["hacking", "android", "ai", "claude"]
+    },
+    {
       title: "Nouse eCalendar",
       date: "2026-05-16",
       href: "pages/nouse-anyuse-ecalendar/nouse-ecalendar.html",
