@@ -1,6 +1,13 @@
 const blogData = {
   posts: [
     {
+      title: "Simple Weather Dashboard",
+      date: "2026-05-15",
+      href: "pages/simple-weather-dashboard/simple-weather-dashboard.html",
+      summary: "A minimal weather dashboard built with React 19 and Tailwind CSS. Displays current conditions — temperature, humidity, wind, and more — for a configurable location via environment variables.",
+      tags: ["typescript", "react", "api", "project"]
+    },
+    {
       title: "Nouse eCalendar, Part 2",
       date: "2026-05-20",
       href: "pages/nouse-ecalendar-part-2/nouse-ecalendar-part-2.html",

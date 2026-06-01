@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Weather Dashboard &mdash; Mario L. Aguayo Jr.</title>
+  <link rel="stylesheet" href="../../../style.css" />
+  <link rel="stylesheet" href="../../blog-post.css" />
+</head>
+
+<body>
+
+  <aside id="sidebar"></aside>
+
+  <main>
+    <nav class="main-nav"></nav>
+
+    <section id="content">
+      <div id="post-body">
+        <h1>Simple Weather Dashboard</h1>
+        <p class="post-tagline">Configured once, always on — a personal weather station for one location.</p>
+        <div class="star-divider">✦ ✦ ✦</div>
+
+        <nav class="toc">
+          <strong>Table of Contents</strong>
+          <ol>
+            <li><a href="#why-fixed-location">Why a Fixed-Location Dashboard?</a></li>
+            <li><a href="#the-stack">The Stack</a></li>
+            <li><a href="#how-it-works">How It Works</a>
+              <ol>
+                <li><a href="#geocoding">Geocoding the ZIP Code</a></li>
+                <li><a href="#fetching-weather">Fetching Weather Data</a></li>
+                <li><a href="#components">Components</a></li>
+              </ol>
+            </li>
+            <li><a href="#dark-mode">Dark Mode Done Right</a></li>
+            <li><a href="#auto-refresh">Auto-Refresh with TanStack Query</a></li>
+          </ol>
+        </nav>
+        <br>
+
+        <h2 id="why-fixed-location">Why a Fixed-Location Dashboard?</h2>
+        <table>
+          <thead style="text-align: center;">
+            <th>Light Mode</th>
+            <th>Dark Mode</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="https://github.com/mlaguayojr/Simple-Weather-Dashboard/raw/main/screenshotLight.png"
+                  alt="screenshot of light mode" width="300px" />
+              </td>
+              <td><img src="https://github.com/mlaguayojr/Simple-Weather-Dashboard/raw/main/screenshotDark.png"
+                  alt="screenshot of dark mode" width="300px" /></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Most weather apps let you search any city, swipe between multiple locations, and build a custom list. This one
+          doesn't. It's intentionally simpler: you configure it once via environment variables (a ZIP code and country
+          code),
+          and it shows you the weather for that one place. No search box, no location history, no friction.
+          <br><br>
+          The idea is that you leave it open — in a browser tab, on a second monitor, on a tablet on your desk. It's a
+          personal weather station that knows where you are and never bothers you to pick a place.
+        </p>
+
+        <h2 id="the-stack">The Stack</h2>
+        <p>
+          The dashboard is built with a modern, deliberately chosen tech stack:
+        </p>
+        <ul>
+          <li><b>TanStack Start</b> — React 19 with server-side rendering, not Next.js. It's newer, less mainstream,
+            and worth the experiment.</li>
+          <li><b>TanStack Router</b> — File-based routing that feels familiar if you've used Next.js.</li>
+          <li><b>TanStack Query</b> — Data fetching, caching, and background refresh — more than a simple
+            <code>fetch</code> call
+            deserves.
+          </li>
+          <li><b>Tailwind CSS v4</b> — The new major version with a different configuration model than v3.</li>
+          <li><b>Lucide React</b> — Icon library for clean, minimal icons.</li>
+          <li><b>OpenWeatherMap API</b> — Live weather data for the configured location.</li>
+          <li><b>Bruno</b> — A local-first API client for testing endpoints. Newer than Postman, lighter than Insomnia.
+          </li>
+        </ul>
+
+        <h2 id="how-it-works">How It Works</h2>
+
+        <h3 id="geocoding">Geocoding the ZIP Code</h3>
+        <p>
+          The dashboard needs latitude and longitude to fetch weather data, but the configuration is a ZIP code and
+          country code. A custom React hook handles the geocoding step: it calls OpenWeatherMap's free geocoding API
+          to convert the ZIP code into coordinates. Once you have lat/lng, the weather hook takes over.
+        </p>
+
+        <h3 id="fetching-weather">Fetching Weather Data</h3>
+        <p>
+          Another custom hook fetches the current weather from OpenWeatherMap using the coordinates. TanStack Query
+          wraps both hooks, managing the async flow, caching responses, handling errors, and optionally refreshing
+          in the background every 5 minutes.
+          <br><br>
+          The response includes everything: temperature, humidity, pressure, wind speed, visibility, cloud cover, and
+          sunrise/sunset times. All of it gets displayed in the dashboard.
+        </p>
+
+        <h3 id="components">Components</h3>
+        <p>
+          The UI breaks into discrete, composable pieces:
+        </p>
+        <div class="code-block">
+          <pre>WeatherDashboard (container)
+  ├── WeatherHeader
+  ├── MainWeatherCard
+  ├── StatsGrid
+  ├── WindSunriseSunset
+  ├── ThemeToggle
+  └── AutoRefresh</pre>
+        </div>
+        <br>
+        <p>
+          <code>WeatherHeader</code> shows the location and current date. <code>MainWeatherCard</code> is the hero
+          section with the large temperature and condition. <code>StatsGrid</code> lays out humidity, pressure, and
+          visibility in a responsive grid. <code>WindSunriseSunset</code> displays wind direction/speed and solar times.
+          <br><br>
+          <code>ThemeToggle</code> and <code>AutoRefresh</code> are the interactive bits — toggle dark mode and set up
+          background refresh, respectively.
+        </p>
+
+        <h2 id="dark-mode">Dark Mode Done Right</h2>
+        <p>
+          The dashboard supports light and dark themes. Rather than relying only on Tailwind's CSS class toggle, a
+          centralized <code>ThemeContext</code> manages the state in React. This approach buys you:
+        </p>
+        <ul>
+          <li>Consistent theme propagation across the component tree — no surprise unstyled flashes.</li>
+          <li>The ability to persist the user's choice in localStorage and restore it on reload.</li>
+          <li>Easy integration with component-level logic that might respond to the theme (e.g., adjusting API calls or
+            image sources).</li>
+        </ul>
+        <p>
+          Tailwind still does the heavy lifting with variant utilities, but the React context handles the orchestration.
+        </p>
+
+        <h2 id="auto-refresh">Auto-Refresh with TanStack Query</h2>
+        <p>
+          One of the reasons to use a full data-fetching library like TanStack Query: an optional auto-refresh feature
+          that refetches the weather every 5 minutes. A single <code>refetchInterval</code> config flag gets you:
+        </p>
+        <ul>
+          <li>Automatic background refresh without writing an interval manager yourself.</li>
+          <li>Exponential backoff and retry logic if the API is temporarily down.</li>
+          <li>Stale-data handling — TanStack Query knows whether the cached data is fresh or stale.</li>
+          <li>No extra boilerplate, no cleanup hassles.</li>
+        </ul>
+        <p>
+          For a simple app that just needs to refresh the weather once in a while, it might seem overkill. But once
+          you've used TanStack Query, you realize how much complexity it absorbs for you.
+        </p>
+        <br>
+        <p>
+          The project is open on GitHub:
+          <a href="https://github.com/mlaguayojr/Simple-Weather-Dashboard"
+            target="_blank">mlaguayojr/Simple-Weather-Dashboard</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/mustache@4/mustache.min.js"></script>
+  <script src="../../../js/sidebar.js"></script>
+  <script src="../../../js/nav.js"></script>
+</body>
+
+</html>
