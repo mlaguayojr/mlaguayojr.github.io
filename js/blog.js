@@ -33,7 +33,7 @@ const blogData = {
       date: "2017-12-29",
       href: "pages/academic-google-calendar-creator/academic-google-calendar-creator.html",
       summary: "A Python script that logs into SCSU's BannerWeb, scrapes your registered courses, and exports them as an .ics file ready to import into Google Calendar.",
-      tags: ["python", "automation", "web scraping"]
+      tags: ["python", "automation", "web scraping", "project"]
     }
   ]
 };
