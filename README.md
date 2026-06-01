@@ -4,6 +4,8 @@ Personal portfolio and blog for Mario L. Aguayo Jr., Full Stack Software Enginee
 
 Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 
+> **Note:** Not all projects I've worked on are presented here. Please see my [GitHub profile](https://github.com/mlaguayojr) for all public projects. I'm currently reviewing my repositories and creating dedicated posts for them.
+
 ## Pages
 
 - **About** — brief intro and bio
