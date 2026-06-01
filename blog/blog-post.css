@@ -80,7 +80,8 @@
 
 /* ── Code ── */
 code {
-  background: #f0f0f0;
+  background: var(--code-bg, #f0f0f0);
+  color: var(--code-text, inherit);
   padding: 0.15em 0.4em;
   border-radius: 3px;
   font-size: 0.9em;
@@ -96,7 +97,7 @@ figure.screenshot img {
   display: block;
   width: 100%;
   max-width: 500px;
-  border: 1px solid #d0d0d0;
+  border: 1px solid var(--border);
   border-radius: 4px;
 }
 

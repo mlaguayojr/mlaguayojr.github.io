@@ -14,6 +14,35 @@
   --border: #e0e0e0;
   --bg: #fff;
   --sidebar-bg: #f8f8f8;
+  --code-bg: #f0f0f0;
+  --code-text: inherit;
+  --tag-bg: #f0f4f8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #4a9eff;
+    --text: #e0e0e0;
+    --muted: #999;
+    --border: #444;
+    --bg: #1a1a1a;
+    --sidebar-bg: #252525;
+    --code-bg: #2a2a2a;
+    --code-text: #e0e0e0;
+    --tag-bg: #333333;
+  }
+}
+
+[data-theme="dark"] {
+  --accent: #4a9eff;
+  --text: #e0e0e0;
+  --muted: #999;
+  --border: #444;
+  --bg: #1a1a1a;
+  --sidebar-bg: #252525;
+  --code-bg: #2a2a2a;
+  --code-text: #e0e0e0;
+  --tag-bg: #333333;
 }
 
 body {
@@ -99,6 +128,59 @@ nav a svg {
   fill: currentColor;
 }
 
+nav {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+}
+
+/* ── Theme Toggle ── */
+.theme-toggle {
+  display: flex;
+  justify-content: center;
+}
+
+#theme-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+#theme-btn:hover {
+  background-color: var(--border);
+}
+
+#theme-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sun-icon {
+  display: block;
+}
+
+.moon-icon {
+  display: none;
+}
+
+[data-theme="dark"] .sun-icon {
+  display: none;
+}
+
+[data-theme="dark"] .moon-icon {
+  display: block;
+}
+
 /* ── Main nav ── */
 .main-nav {
   display: flex;
@@ -161,7 +243,7 @@ p:last-child {
 }
 
 .skill-tag {
-  background: #f0f4f8;
+  background: var(--tag-bg);
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 3px;
@@ -236,7 +318,7 @@ p:last-child {
 }
 
 .post-tag {
-  background: #f0f4f8;
+  background: var(--tag-bg);
   color: var(--muted);
   border: 1px solid var(--border);
   border-radius: 3px;
@@ -348,11 +430,16 @@ p:last-child {
   main {
     padding: 2rem 1.5rem;
   }
+
+  .main-nav {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 div.code-block {
-  background-color: #f4f4f4;
-  border: 1px solid #ddd;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px;
   overflow-x: auto;
@@ -360,4 +447,5 @@ div.code-block {
   line-height: 1.5;
   margin-top: 5px;
   margin-bottom: 5px;
+  color: var(--code-text);
 }
