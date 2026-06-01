@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
   );
 
+  blogData.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   const res = await fetch('/templates/blog/post-summary.html');
   const template = await res.text();
   document.getElementById('blog').innerHTML = Mustache.render(template, blogData);
