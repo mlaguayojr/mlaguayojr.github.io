@@ -54,6 +54,48 @@ async function computeReadingTime(href) {
   return Math.max(1, Math.ceil(words.length / 200));
 }
 
+let activeSearch = '';
+let activeTags = new Set();
+let template = '';
+
+function renderBlog(posts) {
+  document.getElementById('blog').innerHTML = Mustache.render(template, { posts });
+  const count = posts.length;
+  const total = blogData.posts.length;
+  const plural = count === 1 ? 'post' : 'posts';
+  let summary = `${count} ${plural}`;
+  if (count !== total) {
+    summary = `${count} of ${total} ${plural} filtered`;
+  }
+  document.getElementById('blog-summary').innerHTML = `<span class="blog-count">${summary}</span>`;
+}
+
+function buildTagFilters() {
+  const allTags = new Set();
+  blogData.posts.forEach(post => {
+    post.tags.forEach(tag => allTags.add(tag));
+  });
+  const sortedTags = Array.from(allTags).sort();
+  const tagsHtml = sortedTags.map(tag =>
+    `<button class="tag-filter" data-tag="${tag}">#${tag}</button>`
+  ).join('');
+  document.getElementById('tag-filters').innerHTML = tagsHtml;
+}
+
+function filterAndRender() {
+  let filtered = blogData.posts;
+  if (activeSearch) {
+    const q = activeSearch.toLowerCase();
+    filtered = filtered.filter(p =>
+      p.title.toLowerCase().includes(q) || p.summary.toLowerCase().includes(q)
+    );
+  }
+  if (activeTags.size > 0) {
+    filtered = filtered.filter(p => p.tags.some(t => activeTags.has(t)));
+  }
+  renderBlog(filtered);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   await Promise.all(
     blogData.posts.map(async post => {
@@ -69,6 +111,29 @@ document.addEventListener('DOMContentLoaded', async () => {
   blogData.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const res = await fetch('/templates/blog/post-summary.html');
-  const template = await res.text();
-  document.getElementById('blog').innerHTML = Mustache.render(template, blogData);
+  template = await res.text();
+
+  buildTagFilters();
+  renderBlog(blogData.posts);
+
+  const searchInput = document.getElementById('blog-search');
+  searchInput.addEventListener('input', (e) => {
+    activeSearch = e.target.value;
+    filterAndRender();
+  });
+
+  const tagFilters = document.getElementById('tag-filters');
+  tagFilters.addEventListener('click', (e) => {
+    if (e.target.classList.contains('tag-filter')) {
+      const tag = e.target.dataset.tag;
+      if (activeTags.has(tag)) {
+        activeTags.delete(tag);
+        e.target.classList.remove('active');
+      } else {
+        activeTags.add(tag);
+        e.target.classList.add('active');
+      }
+      filterAndRender();
+    }
+  });
 });

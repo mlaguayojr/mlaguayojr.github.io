@@ -458,3 +458,61 @@ div.code-block {
   margin-bottom: 5px;
   color: var(--code-text);
 }
+
+/* Blog controls */
+#blog-controls {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+#blog-search {
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--sidebar-bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+#blog-search:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+#tag-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+#blog-summary {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.tag-filter {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.tag-filter:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tag-filter.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
