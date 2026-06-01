@@ -12,11 +12,18 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 - **Education** — academic background
 - **Projects** — demos and side projects
 
+## Features
+
+- **Dark/Light Theme Toggle** — theme preference is saved to localStorage and respects system preference
+- **Responsive Design** — mobile-optimized layout with centered navigation
+- **Semantic Sidebar** — profile card with social links, separated from main content
+
 ## Tech Stack
 
 - **HTML/CSS/JavaScript** — no frameworks, no build step
 - **[Mustache.js](https://github.com/janl/mustache.js)** (via CDN) — logic-less templating for rendering sidebar, blog posts, career entries, and projects from JS data objects
 - **GitHub Pages** — static hosting
+- **CSS Variables** — theme colors defined as custom properties for easy dark mode support
 
 ## Structure
 
@@ -39,8 +46,6 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 │   ├── career.html
 │   ├── education.html
 │   └── projects.html
-└── demos/                   # Live project demos
-    └── keypadjs/
 ```
 
 ## Running Locally
