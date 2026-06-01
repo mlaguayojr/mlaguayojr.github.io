@@ -235,6 +235,15 @@ p:last-child {
   margin-bottom: 0;
 }
 
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 /* Skills grid */
 .skills-grid {
   display: flex;
