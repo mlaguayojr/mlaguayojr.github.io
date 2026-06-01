@@ -1,6 +1,13 @@
 const blogData = {
   posts: [
     {
+      title: "Solovis AI-First Hackathon",
+      date: "2026-04-21",
+      href: "/blog/pages/solovis-ai-hackathon/solovis-ai-hackathon.html",
+      summary: "How I used Claude Code to build a Model Context Protocol server for Core Data Platform — and took second place at Solovis's AI-First Hackathon.",
+      tags: ["ai", "claude", "mcp", "hackathon", "work"]
+    },
+    {
       title: "Simple Weather Dashboard",
       date: "2026-05-15",
       href: "/blog/pages/simple-weather-dashboard/simple-weather-dashboard.html",

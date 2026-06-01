@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solovis AI-First Hackathon &mdash; Mario L. Aguayo Jr.</title>
+  <link rel="stylesheet" href="../../../style.css" />
+  <link rel="stylesheet" href="../../blog-post.css" />
+</head>
+
+<body>
+
+  <aside id="sidebar"></aside>
+
+  <main>
+    <nav class="main-nav"></nav>
+
+    <section id="content">
+      <div id="post-body">
+        <h1>Solovis AI-First Hackathon</h1>
+        <p class="post-tagline">Using Claude Code to build an MCP server for Core Data Platform — and taking second
+          place.</p>
+        <div class="star-divider">✦ ✦ ✦</div>
+
+        <nav class="toc">
+          <strong>Table of Contents</strong>
+          <ol>
+            <li><a href="#the-hackathon">The Hackathon</a></li>
+            <li><a href="#what-i-built">What I Built</a></li>
+            <li><a href="#core-data-platform">Core Data Platform</a></li>
+            <li><a href="#building-with-claude-code">Building with Claude Code</a></li>
+            <li><a href="#the-result">The Result</a></li>
+          </ol>
+        </nav>
+        <br>
+
+        <h2 id="the-hackathon">The Hackathon</h2>
+        <p>
+          Solovis held an AI-First Hackathon on April 21st, 2026 — a day-long event designed to reinforce what it means
+          to develop with AI as a foundational tool, not an afterthought.
+        </p>
+        <p>
+          The hackathon's core thesis was straightforward: <em>"Build smarter. Move faster. Think differently."</em> It
+          wasn't just about shipping something in a few hours — it was about rewiring how we work. The skills and
+          workflows practiced that day were meant to carry forward into future work. AI-first development is the
+          standard we're building toward.
+        </p>
+        <p>
+          Teams were judged on three criteria:
+        </p>
+        <ul>
+          <li><strong>Impact</strong> — Does this solve a real problem or meaningfully improve a process? Does it
+            demonstrate genuine value that could carry into future work?</li>
+          <li><strong>Execution</strong> — Is it functional and well-built? Did the team leverage AI tools effectively
+            throughout development — not just at the end?</li>
+          <li><strong>Presentation</strong> — Can the team clearly communicate their work? Judges evaluated lessons
+            learned and workflow improvements that led to better outcomes.</li>
+        </ul>
+
+        <h2 id="what-i-built">What I Built</h2>
+        <p>
+          I built an <strong>MCP (Model Context Protocol) server</strong> for Core Data Platform.
+        </p>
+        <p>
+          If you're unfamiliar with MCP: it's a protocol that lets AI tools — Claude, other language models, or custom
+          applications — communicate with external systems through a standardized interface. An MCP server exposes tools
+          and resources; a client (Claude Code, in this case) calls them.
+        </p>
+        <p>
+          The server I built gives Claude direct, structured access to Core Data Platform capabilities. Instead of
+          Claude having to ask users to click through a UI or run queries manually, it can interact with CDP
+          programmatically — planning data extraction workflows, checking schema, validating configurations.
+        </p>
+        <p>
+          The intention is for Claude Chat users to interact with this MCP server through a Connector, unlocking
+          Core Data Platform workflows directly within their chat experience. In the context of a hackathon, the
+          value was immediate: Claude could actually reason about and operate on the platform in real time, rather
+          than just describing what it would do.
+        </p>
+
+        <h2 id="core-data-platform">Core Data Platform</h2>
+        <p>
+          Core Data Platform is a self-service ETL application that empowers users to extract datasets from the Solovis
+          ecosystem.
+        </p>
+        <p>
+          Professionally, I've contributed to the platform across multiple layers:
+        </p>
+        <ul>
+          <li><strong>API Services</strong> — Implemented RESTful endpoints using ASP.NET and Entity Framework to
+            support key platform capabilities.</li>
+          <li><strong>Infrastructure</strong> — Managed critical platform infrastructure in Microsoft Azure with
+            Terraform.</li>
+          <li><strong>Deployment</strong> — Authored and maintained CI/CD deployment code using Azure Pipelines for both
+            the Core Data Platform API and UI codebases.</li>
+          <li><strong>Frontend Integration</strong> — Integrated the Core Data Platform UI with backend service
+            capabilities using TanStack Query for state management and API communication.</li>
+        </ul>
+        <p>
+          In short: it's a complex system with multiple moving parts — API, UI, infrastructure, data pipeline. An MCP
+          server that exposes its functionality in a structured way makes it significantly more AI-friendly.
+        </p>
+
+        <h2 id="building-with-claude-code">Building with Claude Code</h2>
+        <p>
+          This was the meta part of the hackathon: I used Claude Code to build the MCP server, while the MCP server
+          itself was designed to work with Claude Code. AI all the way down.
+        </p>
+        <p>
+          The process mirrored the hackathon's own principles:
+        </p>
+        <ul>
+          <li><strong>AI as Co-Pilot</strong> — Claude Code scaffolded the MCP server structure, suggested tool
+            definitions, and helped me iterate on the API design. I didn't write it in isolation; it was a collaborative
+            back-and-forth.</li>
+          <li><strong>Prompt Engineering</strong> — The quality of the MCP server depended on clear, context-rich
+            prompts about what Core Data Platform does, what operations Claude should be able to perform, and what the
+            data contracts should look like.</li>
+          <li><strong>Iterate with AI</strong> — I tested the server, found gaps, and Claude Code helped refine tool
+            definitions and error handling. The feedback loop was fast.</li>
+          <li><strong>Reflect & Improve</strong> — Along the way, I tracked what worked and what didn't — which tools
+            were most useful, which API shapes made sense, which error cases needed explicit handling.</li>
+        </ul>
+
+        <h2 id="the-result">The Result</h2>
+        <p>
+          🏆 Second place!!!
+        </p>
+        <p>
+          One day — really just a few hours — to take an idea from concept to working demo in front of a panel. That was
+          intense. The kind of intensity where you're in the flow, everything is happening at once, and you're not
+          entirely sure if you're going to make it. But that's also what made it rewarding. You compress the entire
+          feedback loop — plan, build, iterate, refine, demo — into a single afternoon.
+        </p>
+        <p>
+          And then there's the small miracle of demo gods being merciful. When you ready to present, the last thing
+          you want to hear yourself say is <em>"well, it was working a few moments ago."</em> But this time, the demo
+          worked. The MCP server responded, the tools fired, Claude reasoned about the platform. The relief was real. 😅
+        </p>
+        <p>
+          The broader lesson stuck with me: a new approach to building from nothing to quickly a proof-of-concept. Use
+          AI at every stage. Write precise prompts. Review and refine quickly. Ship. Reflect on what worked.
+        </p>
+        <p>
+          That's the mindset worth carrying forward.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/mustache@4/mustache.min.js"></script>
+  <script src="../../../js/sidebar.js"></script>
+  <script src="../../../js/nav.js"></script>
+</body>
+
+</html>
