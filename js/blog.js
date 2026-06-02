@@ -1,6 +1,13 @@
 const blogData = {
   posts: [
     {
+      title: "Kaprekar's Constant: 6174",
+      date: "2026-06-01",
+      href: "/blog/pages/kaprekar-constant-6174/kaprekar-constant-6174.html",
+      summary: "Every 4-digit number (with non-identical digits) collapses to 6174 in at most 7 steps — a surprisingly elegant mathematical phenomenon.",
+      tags: ["math", "neat"]
+    },
+    {
       title: "Solovis AI-First Hackathon",
       date: "2026-04-21",
       href: "/blog/pages/solovis-ai-hackathon/solovis-ai-hackathon.html",

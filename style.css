@@ -300,6 +300,15 @@ a:hover {
   margin-bottom: 0;
 }
 
+.notes {
+  background: var(--tag-bg);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+}
+
 .post-header {
   display: flex;
   align-items: baseline;
