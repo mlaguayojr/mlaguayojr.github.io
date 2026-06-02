@@ -155,12 +155,12 @@
 
         <h2 id="try-it">Try It Yourself</h2>
         <p>
-          Pick any 4-digit number and watch it converge to 6174. The demo below shows each step of the journey.
+          Pick any number, up to 4 digits, and watch it converge to 6174. The demo below shows each step of the journey.
         </p>
         <div id="kaprekar-demo">
-          <label for="kaprekar-input">Enter a 4-digit number:</label>
+          <label for="kaprekar-input">Enter a number:</label>
           <div>
-            <input type="number" id="kaprekar-input" min="1000" max="9999" placeholder="e.g., 1234" value="1234" />
+            <input type="number" id="kaprekar-input" min="1" max="9999" placeholder="e.g., 1234" value="1234" />
             <button id="kaprekar-btn">Run</button>
           </div>
           <div id="kaprekar-error"></div>
@@ -230,8 +230,8 @@
 
       const num = parseInt(input, 10);
 
-      if (isNaN(num) || num < 1000 || num > 9999) {
-        errorDiv.innerHTML = '<span class="error">Please enter a valid 4-digit number (1000–9999).</span>';
+      if (isNaN(num) || num < 1 || num > 9999) {
+        errorDiv.innerHTML = '<span class="error">Please enter a valid number (1–9999).</span>';
         return;
       }
 
