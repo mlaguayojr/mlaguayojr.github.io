@@ -414,12 +414,6 @@ a:hover {
   color: var(--muted);
 }
 
-/* ── Back to Blog ── */
-.back-to-blog {
-  display: block;
-  margin: 1rem 0;
-}
-
 /* ── Responsive ── */
 @media (max-width: 680px) {
   body {
