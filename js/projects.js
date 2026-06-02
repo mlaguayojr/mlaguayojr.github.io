@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.headReady.then(() => {
   fetch('/templates/projects.html')
     .then(res => res.text())
     .then(template => {

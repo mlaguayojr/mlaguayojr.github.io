@@ -24,7 +24,7 @@ const skillsData = {
   ]
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+window.headReady.then(() => {
   fetch('/templates/skills.html')
     .then(res => res.text())
     .then(template => {

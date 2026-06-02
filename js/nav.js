@@ -40,7 +40,7 @@ function getRelativePath(targetHref) {
   return prefix + targetHref.replace(/^\//, '');
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+window.headReady.then(async () => {
   const res = await fetch('/templates/nav.html');
   const template = await res.text();
 

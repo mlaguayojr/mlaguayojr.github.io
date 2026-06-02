@@ -96,7 +96,7 @@ function filterAndRender() {
   renderBlog(filtered);
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+window.headReady.then(async () => {
   await Promise.all(
     blogData.posts.map(async post => {
       if (!post.href) return;

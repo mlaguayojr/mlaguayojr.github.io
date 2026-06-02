@@ -50,7 +50,7 @@ function toggleTheme() {
   localStorage.setItem("theme", next);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+window.headReady.then(() => {
   initTheme();
 
   fetch("/templates/sidebar.html")

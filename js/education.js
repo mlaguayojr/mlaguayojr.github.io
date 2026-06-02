@@ -18,7 +18,7 @@ const educationData = {
   ]
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+window.headReady.then(() => {
   fetch('/templates/education.html')
     .then(res => res.text())
     .then(template => {

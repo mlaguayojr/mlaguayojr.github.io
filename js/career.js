@@ -249,7 +249,7 @@ const careerData = {
   ],
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+window.headReady.then(() => {
   fetch("/templates/career.html")
     .then((res) => res.text())
     .then((template) => {
