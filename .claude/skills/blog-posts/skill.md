@@ -26,23 +26,13 @@ Use this structure for every new post. Adjust the `<title>` and `<h1>` to match 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Post Title &mdash; Mario L. Aguayo Jr.</title>
-    <link rel="stylesheet" href="../../../style.css" />
-    <link rel="stylesheet" href="../../blog-post.css" />
   </head>
   <body>
     <aside id="sidebar"></aside>
 
     <main>
-      <nav class="main-nav">
-        <a href="../../../index.html">About</a>
-        <a href="../../index.html" class="active">Blog</a>
-        <a href="../../../career/index.html">Career</a>
-        <a href="../../../education/index.html">Education</a>
-        <a href="../../../projects/index.html">Projects</a>
-      </nav>
+      <nav class="main-nav"></nav>
 
       <section id="content">
         <div id="post-body">
@@ -64,8 +54,9 @@ Use this structure for every new post. Adjust the `<title>` and `<h1>` to match 
       </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/mustache@4/mustache.min.js"></script>
+    <script src="../../../js/head.js"></script>
     <script src="../../../js/sidebar.js"></script>
+    <script src="../../../js/nav.js"></script>
   </body>
 </html>
 ```
@@ -78,7 +69,7 @@ Prepend a new object to the `blogData.posts` array:
 {
   title: "Post Title",
   date: "YYYY-MM-DD",
-  href: "pages/[post-title]/[post-title].html",
+  href: "/blog/pages/[post-title]/[post-title].html",
   summary: "One sentence summary — can use an em dash like this.",
   tags: ["tag1", "tag2"]
 }
@@ -96,6 +87,13 @@ Use existing tags where possible to keep filtering consistent. Current tags in u
 - `automation` — general automation (scripts, flows, scheduled tasks)
 - `web scraping` — scraping or parsing web pages
 - `design` — visual design, UI/UX, portfolio work
+- `mcp` — Model Context Protocol integrations
+- `hackathon` — hackathon projects or writeups
+- `work` — posts related to work or professional projects
+- `typescript` — TypeScript code or projects
+- `react` — React-based projects
+- `api` — posts involving API usage or integration
+- `project` — general project showcases
 
 ## Em Dash Usage
 

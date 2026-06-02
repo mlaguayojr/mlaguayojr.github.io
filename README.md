@@ -19,11 +19,13 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 - **Dark/Light Theme Toggle** — theme preference is saved to localStorage and respects system preference
 - **Responsive Design** — mobile-optimized layout with centered navigation
 - **Semantic Sidebar** — profile card with social links, separated from main content
+- **Blog Search & Tag Filtering** — posts are filterable by keyword search and tag buttons; state is managed in `js/blog.js`
+- **Shared `<head>` Template** — meta tags, stylesheets, and favicon are defined once in `templates/head.html` and injected on every page by `js/head.js`
 
 ## Tech Stack
 
 - **HTML/CSS/JavaScript** — no frameworks, no build step
-- **[Mustache.js](https://github.com/janl/mustache.js)** (via CDN) — logic-less templating for rendering sidebar, blog posts, career entries, and projects from JS data objects
+- **[Mustache.js](https://github.com/janl/mustache.js)** (vendored locally as `mustache.min.js`) — logic-less templating for rendering sidebar, nav, blog posts, career entries, and projects from JS data objects
 - **GitHub Pages** — static hosting
 - **CSS Variables** — theme colors defined as custom properties for easy dark mode support
 
@@ -31,23 +33,36 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 
 ```
 ├── index.html               # About page
-├── blog/index.html          # Blog listing
+├── style.css                # Global styles
+├── mustache.min.js          # Mustache templating library (vendored)
+├── favicon.svg              # Site favicon
+├── blog/
+│   ├── index.html           # Blog listing
+│   ├── blog-post.css        # Blog post styles
+│   └── pages/               # Individual blog post directories
+│       └── [post-slug]/
+│           └── [post-slug].html
 ├── career/index.html        # Career page
 ├── education/index.html     # Education page
 ├── projects/index.html      # Projects page
-├── style.css                # Global styles
 ├── js/
+│   ├── head.js              # Loads Mustache, injects shared <head> content
 │   ├── sidebar.js           # Sidebar data + render
-│   ├── blog.js              # Blog post data + render
+│   ├── nav.js               # Nav data + render (handles active link + relative paths)
+│   ├── blog.js              # Blog post data + render + search/filter
 │   ├── career.js            # Career data + render
 │   ├── education.js         # Education data + render
-│   └── projects.js          # Projects data + render
-├── templates/               # Mustache HTML templates
-│   ├── sidebar.html
-│   ├── blog/post-summary.html
-│   ├── career.html
-│   ├── education.html
-│   └── projects.html
+│   ├── projects.js          # Projects data + render
+│   └── skills.js            # Skills data + render
+└── templates/               # Mustache HTML templates
+    ├── head.html            # Shared <head> content (meta, stylesheets, favicon)
+    ├── sidebar.html
+    ├── nav.html
+    ├── blog/post-summary.html
+    ├── career.html
+    ├── education.html
+    ├── projects.html
+    └── skills.html
 ```
 
 ## Running Locally
