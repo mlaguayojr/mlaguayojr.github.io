@@ -408,11 +408,24 @@ a:hover {
     gap: 0.35rem;
 }
 
+.career-skills-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.career-skills-section h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+}
+
 .career-skills {
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem;
-    margin-top: 0.75rem;
+    margin-top: 0;
 }
 
 .career-footnote {
@@ -430,6 +443,36 @@ a:hover {
     flex-direction: column;
     gap: 0.2rem;
     color: var(--muted);
+}
+
+.career-related-posts {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.career-related-posts h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+}
+
+.career-related-posts ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.career-related-posts li a {
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.career-related-posts li a:hover {
+    text-decoration: underline;
 }
 
 /* ── Responsive ── */
@@ -486,6 +529,7 @@ a:hover {
         color: var(--muted);
         line-height: 1.6;
         order: 2;
+        text-align: center;
     }
 
     nav {
@@ -503,7 +547,12 @@ a:hover {
     }
 
     nav a {
-        font-size: 0.8rem;
+        font-size: 0;
+    }
+
+    nav a svg {
+        width: 20px;
+        height: 20px;
     }
 
     .theme-toggle {

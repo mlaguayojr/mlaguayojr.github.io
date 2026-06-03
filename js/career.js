@@ -8,6 +8,12 @@ const careerData = {
       location: "Remote",
       title: "Full Stack Software Engineer",
       duration: { start: "July 2022", end: "Present" },
+      relatedPosts: [
+        {
+          title: "Solovis AI-First Hackathon",
+          path: "/blog/pages/solovis-ai-hackathon/solovis-ai-hackathon.html",
+        },
+      ],
       skills: [
         "C#/.NET",
         "ASP.NET",

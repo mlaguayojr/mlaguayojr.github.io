@@ -19,9 +19,20 @@
       {{/content}}
     </ul>
     {{#footnote}}<p class="career-footnote"><sup>{{superscript}}</sup> {{footnote}}</p>{{/footnote}}
-    <footer class="career-skills">
-      {{#skills}}<span class="skill-tag">{{.}}</span>{{/skills}}
-    </footer>
+    <div class="career-skills-section">
+      <h4>Skills</h4>
+      <footer class="career-skills">
+        {{#skills}}<span class="skill-tag">{{.}}</span>{{/skills}}
+      </footer>
+    </div>
+    {{#relatedPosts}}
+    <div class="career-related-posts">
+      <h4>Related Posts</h4>
+      <ul>
+        {{#relatedPosts}}<li><a href="{{path}}">{{title}}</a></li>{{/relatedPosts}}
+      </ul>
+    </div>
+    {{/relatedPosts}}
   </div>
   {{/career}}
 </div>
