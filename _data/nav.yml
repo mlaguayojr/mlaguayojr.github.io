@@ -1,0 +1,11 @@
+items:
+  - label: "About"
+    path: "/"
+  - label: "Blog"
+    path: "/blog/"
+  - label: "Career"
+    path: "/career/"
+  - label: "Projects"
+    path: "/projects/"
+  - label: "Education"
+    path: "/education/"

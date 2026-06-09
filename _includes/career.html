@@ -1,0 +1,63 @@
+<section id="career">
+    <div class="career-list">
+        {% for job in site.data.career.career %}
+        <div class="career-entry">
+            <div class="career-header">
+                <div>
+                    <div class="career-name">
+                        {{ job.name }} {% if job.superscript %}<sup
+                            >{{ job.superscript }}</sup
+                        >{% endif %}
+                    </div>
+                    <div class="career-title">
+                        {{ job.title }} · {{ job.location }}
+                    </div>
+                </div>
+                <div class="career-duration">
+                    {{ job.duration.start }} - {{ job.duration.end }}
+                </div>
+            </div>
+
+            {% if job.content %}
+            <div class="career-content">
+                {% for item in job.content %}
+                <ul class="career-topic">
+                    <li>{{ item.topic }}</li>
+                    {% if item.subtopic %}
+                    <ul class="career-subtopics">
+                        {% for sub in item.subtopic %}
+                        <li>{{ sub }}</li>
+                        {% endfor %}
+                    </ul>
+                </ul>
+                {% endif %} {% endfor %}
+            </div>
+            {% endif %} {% if job.skills %}
+            <div class="career-skills-section">
+                <h5>Skills</h5>
+                {% for skill in job.skills %}
+                <span class="skill-tag">{{ skill }}</span>
+                {% endfor %}
+            </div>
+            {% endif %} {% if job.relatedPosts %}
+            <div class="career-related-posts">
+                <h5>Related Posts</h5>
+                <ul>
+                    {% for post in job.relatedPosts %}
+                    <li>
+                        <a href="{{ post.path | relative_url }}"
+                            >{{ post.title }}</a
+                        >
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %} {% if site.data.career.career[0].superscript %}
+        <div class="career-footnote">
+            <sup>1</sup> {{ site.data.career.career[0].footnote }}
+        </div>
+        {% endif %}
+    </div>
+</section>

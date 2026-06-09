@@ -1,0 +1,13 @@
+name: "Mario L. Aguayo, Jr."
+tagline: "Full Stack Software Engineer"
+bio: "📖 Lifelong learner. 🛠️ I build things, break things, and always come back sharper. ✍️⚔️"
+links:
+  - href: "https://github.com/mlaguayojr"
+    label: "GitHub"
+    external: true
+  - href: "https://www.linkedin.com/in/mario-luis-aguayo-jr"
+    label: "LinkedIn"
+    external: true
+  - href: "mailto:mlaguayojr@gmail.com"
+    label: "mlaguayojr@gmail.com"
+    external: false

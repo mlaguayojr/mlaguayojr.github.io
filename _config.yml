@@ -1,0 +1,13 @@
+title: Mario L. Aguayo Jr.
+url: "https://mlaguayojr.github.io"
+baseurl: ""
+timezone: America/New_York
+permalink: /blog/:slug/
+
+exclude:
+  - Dockerfile
+  - docker-compose.yml
+  - README.md
+  - "*.md"
+  - node_modules/
+  - demos/

@@ -65,8 +65,10 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 │
 ├── assets/
 │   ├── css/
+│   │   ├── style.css        # Global styles with CSS variables
 │   │   └── blog-post.css    # Blog post–specific styles
-│   └── images/              # Blog post images
+│   ├── images/              # Blog post images
+│   └── avatar.jpg           # Profile avatar
 │
 ├── index.html               # About page
 ├── blog/index.html          # Blog listing page
@@ -74,8 +76,6 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 ├── education/index.html     # Education page
 ├── projects/index.html      # Projects page
 │
-├── style.css                # Global styles with CSS variables
-├── avatar.jpg               # Profile avatar
 └── favicon.svg              # Site icon
 ```
 
@@ -144,6 +144,6 @@ Changes are reflected immediately on rebuild.
 
 ### Styling
 
-- **Global styles** — edit `style.css` (uses CSS custom properties for theming)
+- **Global styles** — edit `assets/css/style.css` (uses CSS custom properties for theming)
 - **Blog post styles** — edit `assets/css/blog-post.css`
-- **Theme colors** — defined in `style.css` under `:root` (light) and `[data-theme="dark"]` (dark)
+- **Theme colors** — defined in `assets/css/style.css` under `:root` (light) and `[data-theme="dark"]` (dark)

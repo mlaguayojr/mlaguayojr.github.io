@@ -1,0 +1,208 @@
+---
+layout: post
+title: "Kaprekar's Constant: 6174"
+date: 2026-06-01
+tags: [math, neat]
+summary: "Every 4-digit number is secretly heading to the same destination."
+---
+
+<p class="post-tagline">{{ page.summary }}</p>
+<div class="star-divider">✦ ✦ ✦</div>
+
+<nav class="toc">
+  <strong>Table of Contents</strong>
+  <ol>
+    <li><a href="#what-is-it">What Is Kaprekar's Constant?</a></li>
+    <li><a href="#the-algorithm">The Algorithm</a></li>
+    <li><a href="#try-it">Try It Yourself</a></li>
+    <li><a href="#why-6174">Why Does It Work?</a></li>
+  </ol>
+</nav>
+<br />
+
+<h2 id="what-is-it">What Is Kaprekar's Constant?</h2>
+<p>
+  6174 is a magic number. Take any 4-digit number with at least two different digits, arrange
+  them in descending order, then subtract the ascending arrangement. Repeat this process. No matter
+  where you start, you will always reach 6174 in at most 7 steps. Once you hit 6174, the process
+  loops forever — it maps back to itself.
+</p>
+<p>
+  This curious property was discovered by the Indian mathematician D.R. Kaprekar in 1949. The
+  constant has since become a staple of recreational mathematics, demonstrating how structure and
+  inevitability hide inside seemingly random numbers.
+</p>
+
+<h2 id="the-algorithm">The Algorithm</h2>
+<p>The Kaprekar routine for 4-digit numbers is surprisingly simple:</p>
+<ol style="margin-left: 2rem; margin-top: 1rem;">
+  <li><strong>Take a number.</strong> Any 4-digit number (e.g., 1234). Pad with leading zeros if needed (e.g., 0050).</li>
+  <li><strong>Arrange descending.</strong> Sort the digits from largest to smallest (e.g., 1234 → 4321).</li>
+  <li><strong>Arrange ascending.</strong> Sort the digits from smallest to largest (e.g., 1234 → 1234).</li>
+  <li><strong>Subtract.</strong> Take descending minus ascending (e.g., 4321 − 1234 = 3087).</li>
+  <li><strong>Repeat.</strong> Use the result as your new starting number. Go back to step 1.</li>
+</ol>
+<br>
+
+<h2 id="try-it">Try It Yourself</h2>
+<p>
+  Pick any number, up to 4 digits, and watch it converge to 6174. The demo below shows each step of the journey.
+</p>
+
+<style>
+  #kaprekar-demo {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  #kaprekar-demo label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+
+  #kaprekar-demo input {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--border, #ccc);
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    background: var(--bg, white);
+    color: var(--text, black);
+  }
+
+  #kaprekar-demo button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    background: var(--accent, #4a90e2);
+    color: white;
+    cursor: pointer;
+  }
+
+  #kaprekar-demo button:hover {
+    opacity: 0.9;
+  }
+
+  #kaprekar-demo .error {
+    color: var(--error, #e74c3c);
+    margin-top: 0.75rem;
+    font-weight: 500;
+  }
+
+  #kaprekar-demo ol {
+    margin-top: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  #kaprekar-demo li {
+    margin: 0.5rem 0;
+    padding: 0.5rem 0.75rem;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.95rem;
+    background: var(--bg, white);
+    border-radius: 4px;
+    border: 1px solid var(--border, #ddd);
+  }
+
+  #kaprekar-demo li.final {
+    background: var(--success-bg, #d4edda);
+    color: var(--success-text, #155724);
+    border: 1px solid var(--border, #999);
+    font-weight: 600;
+  }
+</style>
+
+<div id="kaprekar-demo">
+  <label for="kaprekar-input">Enter a number:</label>
+  <div>
+    <input type="number" id="kaprekar-input" min="1" max="9999" placeholder="e.g., 1234" value="1234" />
+    <button id="kaprekar-btn">Run</button>
+  </div>
+  <div id="kaprekar-error"></div>
+  <ol id="kaprekar-output"></ol>
+</div>
+
+<h2 id="why-6174">Why Does It Work?</h2>
+<p>
+  The reason 6174 is so special lies in the mechanics of the process. There are only 10,000 possible
+  4-digit numbers. When you apply the Kaprekar routine, you create a directed graph where each number
+  points to exactly one successor. With a finite space and one output per input, the system must eventually
+  cycle — and it turns out there's only one cycle in this particular graph: 6174 → 6174.
+</p>
+<p>
+  All other starting numbers funnel into this single fixed point. It's a small
+  miracle of number theory, hiding in plain sight.
+</p>
+<p>How neat is that!</p>
+
+<div class="sources">
+  <h3>Sources</h3>
+  <ul>
+    <li><a href="https://en.wikipedia.org/wiki/Kaprekar%27s_routine" target="_blank">Kaprekar's Routine — Wikipedia</a></li>
+  </ul>
+</div>
+
+<script>
+  function kaprekar(n) {
+    const steps = [];
+    let current = n;
+    const digits = String(n).padStart(4, '0').split('');
+
+    if (new Set(digits).size === 1) {
+      return null;
+    }
+
+    let iteration = 1;
+    while (current !== 6174 && steps.length < 8) {
+      const digitArray = String(current).padStart(4, '0').split('').map(Number);
+      const desc = +[...digitArray].sort((a, b) => b - a).join('');
+      const asc = +[...digitArray].sort((a, b) => a - b).join('');
+      const next = desc - asc;
+      steps.push({ iteration, desc, asc, next });
+      current = next;
+      iteration++;
+    }
+
+    return steps;
+  }
+
+  document.getElementById('kaprekar-btn').addEventListener('click', function () {
+    const input = document.getElementById('kaprekar-input').value;
+    const errorDiv = document.getElementById('kaprekar-error');
+    const outputList = document.getElementById('kaprekar-output');
+
+    errorDiv.innerHTML = '';
+    outputList.innerHTML = '';
+
+    const num = parseInt(input, 10);
+
+    if (isNaN(num) || num < 1 || num > 9999) {
+      errorDiv.innerHTML = '<span class="error">Please enter a valid number (1–9999).</span>';
+      return;
+    }
+
+    const steps = kaprekar(num);
+
+    if (steps === null) {
+      errorDiv.innerHTML = '<span class="error">All digits are the same! The routine doesn\'t work for numbers like 1111. Try a number with at least two different digits.</span>';
+      return;
+    }
+
+    steps.forEach((step, index) => {
+      const li = document.createElement('li');
+      const isFinal = step.next === 6174;
+      if (isFinal) {
+        li.classList.add('final');
+      }
+      li.textContent = `Step ${step.iteration}: ${String(step.desc).padStart(4, '0')} − ${String(step.asc).padStart(4, '0')} = ${String(step.next).padStart(4, '0')}`;
+      outputList.appendChild(li);
+    });
+  });
+
+  document.getElementById('kaprekar-btn').click();
+</script>
