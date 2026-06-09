@@ -8,10 +8,17 @@
   "htmlWhitespaceSensitivity": "css",
   "overrides": [
     {
+      "files": ["_includes/**/*", "_layouts/**/*", "_posts/**/*", "*.html"],
+      "options": {
+        "parser": "babel"
+      }
+    },
+    {
       "files": "*.yml",
       "options": {
         "parser": "yaml"
       }
     }
-  ]
+  ],
+  "ignorePatterns": ["_site/", "node_modules/", "_includes/**", "_layouts/**", "_posts/**"]
 }

@@ -1,5 +1,3 @@
 {% for item in site.data.nav.items %}
-<a href="{{ item.path | relative_url }}" {% if page.url="" ="item.path" %}class="active" {% endif %}
-  >{{ item.label }}</a
->
+<a href="{{ item.path | relative_url }}" {% if page.url == item.path %}class="active"{% endif %}>{{ item.label }}</a>
 {% endfor %}
