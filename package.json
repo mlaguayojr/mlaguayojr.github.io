@@ -1,0 +1,12 @@
+{
+  "name": "mlaguayojr-github-io",
+  "version": "1.0.0",
+  "description": "Personal portfolio and blog",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}

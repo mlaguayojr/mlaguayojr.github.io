@@ -1,17 +1,10 @@
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ page.title | default: site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
-    {% if page.layout == 'post' %}
-    <link
-        rel="stylesheet"
-        href="{{ '/assets/css/blog-post.css' | relative_url }}"
-    />
-    {% endif %}
-    <link
-        rel="icon"
-        href="{{ '/assets/favicon.svg' | relative_url }}"
-        type="image/svg+xml"
-    />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+  {% if page.layout == 'post' %}
+  <link rel="stylesheet" href="{{ '/assets/css/blog-post.css' | relative_url }}" />
+  {% endif %}
+  <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml" />
 </head>

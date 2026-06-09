@@ -1,26 +1,23 @@
 <section id="projects">
-    <div class="project-list">
-        {% for post in site.posts %} {% if post.tags contains 'project' %}
-        <div class="project-card">
-            <h3>
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            </h3>
-            <time
-                class="post-date"
-                datetime="{{ post.date | date: '%Y-%m-%dT%H:%M:%S' }}"
-            >
-                {{ post.date | date: "%B %d, %Y" }}
-            </time>
-            {% if post.summary %}
-            <p>{{ post.summary }}</p>
-            {% endif %} {% if post.tags %}
-            <div class="post-tags">
-                {% for tag in post.tags %} {% if tag != 'project' %}
-                <span class="post-tag">#{{ tag }}</span>
-                {% endif %} {% endfor %}
-            </div>
-            {% endif %}
-        </div>
+  <div class="project-list">
+    {% for post in site.posts %} {% if post.tags contains 'project' %}
+    <div class="project-card">
+      <h3>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h3>
+      <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%dT%H:%M:%S' }}">
+        {{ post.date | date: "%B %d, %Y" }}
+      </time>
+      {% if post.summary %}
+      <p>{{ post.summary }}</p>
+      {% endif %} {% if post.tags %}
+      <div class="post-tags">
+        {% for tag in post.tags %} {% if tag != 'project' %}
+        <span class="post-tag">#{{ tag }}</span>
         {% endif %} {% endfor %}
+      </div>
+      {% endif %}
     </div>
+    {% endif %} {% endfor %}
+  </div>
 </section>
