@@ -267,6 +267,7 @@ a:hover {
     border-radius: 3px;
     padding: 0.25rem 0.65rem;
     font-size: 0.82rem;
+    white-space: nowrap;
 }
 
 /* Projects */
@@ -445,6 +446,10 @@ a:hover {
     color: var(--muted);
 }
 
+ul.career-subtopics > li {
+    margin-left: 1rem;
+}
+
 .career-related-posts {
     margin-top: 1rem;
     padding-top: 1rem;
@@ -473,6 +478,62 @@ a:hover {
 
 .career-related-posts li a:hover {
     text-decoration: underline;
+}
+
+/* Education */
+.education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.education-entry {
+    border-left: 3px solid transparent;
+    padding: 0.75rem 1rem;
+}
+
+.education-entry:nth-child(1) {
+    border-left-color: var(--accent);
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.education-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.education-duration {
+    font-size: 0.8rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.education-title {
+    font-size: 0.875rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+}
+
+.education-location {
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+.education-details {
+    padding-left: 1.25rem;
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    color: var(--muted);
+    font-size: 0.9rem;
 }
 
 /* ── Responsive ── */

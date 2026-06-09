@@ -4,9 +4,7 @@ Personal portfolio and blog for Mario L. Aguayo Jr., Full Stack Software Enginee
 
 Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 
-<p class="notes">
-  <strong>Note:</strong> Not all projects I've worked on are presented here. Please see my <a href="https://github.com/mlaguayojr">GitHub profile</a> for all public projects. I'm currently reviewing my repositories and creating dedicated posts for them.
-</p>
+**Note:** Not all projects I've worked on are presented here. See my [GitHub profile](https://github.com/mlaguayojr) for all public projects.
 
 ## Pages
 
@@ -14,69 +12,138 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 - **Blog** — posts with dates, summaries, and tags
 - **Career** — work history with per-entry skill tags
 - **Education** — academic background
-- **Projects** — demos and side projects
+- **Projects** — demos and side projects (filtered from blog by tag)
 
 ## Features
 
-- **Dark/Light Theme Toggle** — theme preference is saved to localStorage and respects system preference
+- **Dark/Light Theme Toggle** — theme preference saved to localStorage and respects system preference
 - **Responsive Design** — mobile-optimized layout with centered navigation
 - **Semantic Sidebar** — profile card with social links, separated from main content
-- **Blog Search & Tag Filtering** — posts are filterable by keyword search and tag buttons; state is managed in `js/blog.js`
-- **Shared `<head>` Template** — meta tags, stylesheets, and favicon are defined once in `templates/head.html` and injected on every page by `js/head.js`
+- **Blog Search & Tag Filtering** — posts filterable by keyword search
+- **Static Site Generation** — Jekyll builds the site at compile time; no client-side rendering overhead
 
 ## Tech Stack
 
-- **HTML/CSS/JavaScript** — no frameworks, no build step
-- **[Mustache.js](https://github.com/janl/mustache.js)** (vendored locally as `mustache.min.js`) — logic-less templating for rendering sidebar, nav, blog posts, career entries, and projects from JS data objects
+- **[Jekyll](https://jekyllrb.com/)** — static site generator with Liquid templating
+- **Liquid** — server-side templating for layouts, includes, and data rendering
+- **YAML** — structured data for site configuration, navigation, skills, career, and education
+- **HTML/CSS/JavaScript** — semantic markup, CSS variables for theming, minimal JS for theme toggle
+- **Docker** — containerized build and serve environment for consistency
 - **GitHub Pages** — static hosting
-- **CSS Variables** — theme colors defined as custom properties for easy dark mode support
 
 ## Structure
 
 ```
+├── _config.yml              # Jekyll configuration
+├── Gemfile                  # Ruby dependencies
+├── Dockerfile               # Docker build configuration
+├── docker-compose.yml       # Docker Compose setup
+│
+├── _layouts/                # Page layouts
+│   ├── default.html         # Wraps all pages (sidebar + nav + content)
+│   └── post.html            # Blog post layout (extends default)
+│
+├── _includes/               # Reusable template fragments
+│   ├── head.html            # <head> with stylesheets and meta tags
+│   ├── sidebar.html         # Profile card with theme toggle
+│   ├── nav.html             # Main navigation
+│   ├── skills.html          # Skills grid
+│   ├── career.html          # Career entries with skills and subtopics
+│   ├── education.html       # Education entries
+│   ├── post-summary.html    # Blog post listing with search
+│   └── projects.html        # Filtered project list (tag: 'project')
+│
+├── _data/                   # YAML data files
+│   ├── site.yml             # Sidebar data (name, bio, social links)
+│   ├── nav.yml              # Navigation items
+│   ├── skills.yml           # Skills list
+│   ├── career.yml           # Career history (6 jobs with details)
+│   └── education.yml        # Education entries
+│
+├── _posts/                  # Blog posts (Jekyll collection)
+│   └── YYYY-MM-DD-slug.html # Individual posts with front matter
+│
+├── assets/
+│   ├── css/
+│   │   └── blog-post.css    # Blog post–specific styles
+│   └── images/              # Blog post images
+│
 ├── index.html               # About page
-├── style.css                # Global styles
-├── mustache.min.js          # Mustache templating library (vendored)
-├── favicon.svg              # Site favicon
-├── blog/
-│   ├── index.html           # Blog listing
-│   ├── blog-post.css        # Blog post styles
-│   └── pages/               # Individual blog post directories
-│       └── [post-slug]/
-│           └── [post-slug].html
+├── blog/index.html          # Blog listing page
 ├── career/index.html        # Career page
 ├── education/index.html     # Education page
 ├── projects/index.html      # Projects page
-├── js/
-│   ├── head.js              # Loads Mustache, injects shared <head> content
-│   ├── sidebar.js           # Sidebar data + render
-│   ├── nav.js               # Nav data + render (handles active link + relative paths)
-│   ├── blog.js              # Blog post data + render + search/filter
-│   ├── career.js            # Career data + render
-│   ├── education.js         # Education data + render
-│   ├── projects.js          # Projects data + render
-│   └── skills.js            # Skills data + render
-└── templates/               # Mustache HTML templates
-    ├── head.html            # Shared <head> content (meta, stylesheets, favicon)
-    ├── sidebar.html
-    ├── nav.html
-    ├── blog/post-summary.html
-    ├── career.html
-    ├── education.html
-    ├── projects.html
-    └── skills.html
+│
+├── style.css                # Global styles with CSS variables
+├── avatar.jpg               # Profile avatar
+└── favicon.svg              # Site icon
 ```
 
 ## Running Locally
 
-Since the templates are loaded via `fetch`, the site needs to be served over HTTP (not opened directly as a file). Any static file server works:
+### With Docker (Recommended)
+
+Docker ensures a consistent environment and handles all dependencies:
 
 ```bash
-# Python
-python -m http.server 8080
+# Build the image and start the server
+docker-compose up --build
 
-# Node (npx)
-npx serve .
+# Server will be available at http://localhost:3000
 ```
 
-Then open `http://localhost:8080`.
+The site will rebuild automatically when you edit files (mounted via volume).
+
+**To stop:**
+```bash
+docker-compose down
+```
+
+### Without Docker
+
+If you prefer to run Jekyll directly:
+
+```bash
+# Install dependencies
+bundle install
+
+# Serve locally
+bundle exec jekyll serve --host 0.0.0.0 --port 3000
+
+# Server will be available at http://localhost:3000
+```
+
+## Editing Content
+
+### Add a Blog Post
+
+Create a new file in `_posts/` with the format `YYYY-MM-DD-slug.html`:
+
+```yaml
+---
+layout: post
+title: "Post Title"
+date: YYYY-MM-DD
+tags: [tag1, tag2]
+summary: "Brief summary shown in listings"
+---
+
+<p>Post content goes here...</p>
+```
+
+### Update Data
+
+Edit the corresponding YAML file in `_data/`:
+- `site.yml` — sidebar name, bio, social links
+- `nav.yml` — navigation items
+- `skills.yml` — skills list
+- `career.yml` — career history
+- `education.yml` — education entries
+
+Changes are reflected immediately on rebuild.
+
+### Styling
+
+- **Global styles** — edit `style.css` (uses CSS custom properties for theming)
+- **Blog post styles** — edit `assets/css/blog-post.css`
+- **Theme colors** — defined in `style.css` under `:root` (light) and `[data-theme="dark"]` (dark)

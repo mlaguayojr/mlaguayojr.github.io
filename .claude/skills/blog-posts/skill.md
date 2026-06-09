@@ -5,75 +5,67 @@ description: Structures Blog Posts. Use when creating, drafting, adding, writing
 
 ## Project Structure
 
-- `blog/pages/` — parent directory for all blog posts.
-- `blog/pages/[post-title]/` — working directory for an individual post. Contains the post's `.html` file and any referenced images.
-- `blog/blog-post.css` — post styling.
-- `blog/index.html` — landing page; rendered dynamically from `js/blog.js` (do not manually edit to add posts).
-- `js/blog.js` — source of truth for all posts. Add a new entry to the `blogData.posts` array here when creating a post.
-- `README.md` — an outline of the Pages, Tech Stack, and Structure of this project. This should be reviewed and updated when major changes have been made.
+- `_posts/` — directory containing all blog posts
+- `_posts/YYYY-MM-DD-slug.html` — individual post file with Jekyll YAML front matter
+- `assets/css/blog-post.css` — post-specific styling
+- `_layouts/post.html` — Jekyll layout for blog posts (handles title, date, tags, content)
+- `_includes/post-summary.html` — blog listing page template (auto-generates from `_posts/` collection)
+- `blog/index.html` — landing page; automatically rendered from Jekyll posts collection
+- `README.md` — project documentation; update when major structural changes occur
 
 ## Post Title Naming
 
-- Use a short, descriptive slug (2–5 words). Example: `nouse-anyuse-ecalendar`, `2026-portfolio-redesign`.
-- The directory name, HTML filename, and `href` in `blog.js` should all match the slug.
-- For multi-part series, append `-part-N` to the original slug. Example: `nouse-ecalendar-part-2`.
+- Use a short, descriptive slug (2–5 words). Example: `nouse-anyuse-ecalendar`, `2026-portfolio-redesign`
+- Filename format: `YYYY-MM-DD-slug.html` (Jekyll standard). Example: `2026-06-01-kaprekar-constant-6174.html`
+- For multi-part series, append `-part-N` to the slug. Example: `2026-05-20-nouse-ecalendar-part-2.html`
 
 ## HTML Template
 
-Use this structure for every new post. Adjust the `<title>` and `<h1>` to match the post.
+Use this structure for every new post. Adjust front matter and content to match the post.
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Post Title &mdash; Mario L. Aguayo Jr.</title>
-  </head>
-  <body>
-    <aside id="sidebar"></aside>
+---
+layout: post
+title: "Post Title"
+date: 2026-06-01
+tags: [tag1, tag2]
+summary: "One sentence summary — use em dashes like this."
+---
 
-    <main>
-      <nav class="main-nav"></nav>
+<p class="post-tagline">{{ page.summary }}</p>
+<div class="star-divider">✦ ✦ ✦</div>
 
-      <section id="content">
-        <div id="post-body">
-          <h1>Post Title</h1>
-          <p class="post-tagline">Tagline here.</p>
-          <div class="star-divider">✦ ✦ ✦</div>
+<nav class="toc">
+  <strong>Table of Contents</strong>
+  <ol>
+    <li><a href="#section">Section</a></li>
+  </ol>
+</nav>
+<br>
 
-          <nav class="toc">
-            <strong>Table of Contents</strong>
-            <ol>
-              <li><a href="#section">Section</a></li>
-            </ol>
-          </nav>
-          <br />
-
-          <!-- post content -->
-          <!-- Note: add <br> after every <ul> or <ol> to preserve spacing before the next paragraph -->
-        </div>
-      </section>
-    </main>
-
-    <script src="../../../js/head.js"></script>
-    <script src="../../../js/sidebar.js"></script>
-    <script src="../../../js/nav.js"></script>
-  </body>
-</html>
+<!-- post content -->
+<!-- Note: add <br> after every <ul> or <ol> to preserve spacing before the next paragraph -->
 ```
 
-## Adding a Post to `js/blog.js`
+## YAML Front Matter
 
-Prepend a new object to the `blogData.posts` array:
+Every post must include:
 
-```js
-{
-  title: "Post Title",
-  date: "YYYY-MM-DD",
-  href: "/blog/pages/[post-title]/[post-title].html",
-  summary: "One sentence summary — can use an em dash like this.",
-  tags: ["tag1", "tag2"]
-}
+```yaml
+---
+layout: post
+title: "Post Title"
+date: YYYY-MM-DD
+tags: [tag1, tag2]
+summary: "One sentence summary — can use an em dash."
+---
 ```
+
+- `layout: post` — always use this layout (handles page structure, date, tags)
+- `title` — post title (displayed as `<h1>`)
+- `date` — publication date in `YYYY-MM-DD` format (also used for sorting)
+- `tags` — comma-separated list of tags for filtering and organization
+- `summary` — one-sentence summary; auto-renders as the post tagline via `{{ page.summary }}`
 
 ## Tags
 
@@ -97,5 +89,6 @@ Use existing tags where possible to keep filtering consistent. Current tags in u
 
 ## Em Dash Usage
 
-- In HTML content: use `&mdash;` (e.g. `word &mdash; word`).
-- In JS strings (summary field): use a bare `—`.
+- In YAML front matter (`summary` field): use a bare `—` (e.g. `"summary: \"Post about X — here's the detail.\"`)
+- In HTML content: use `&mdash;` (e.g. `word &mdash; word`)
+- Tags on blog pages display with a `#` prefix (e.g. `#ai`, `#react`) for visual clarity during filtering
