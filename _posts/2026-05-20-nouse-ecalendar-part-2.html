@@ -1,0 +1,55 @@
+﻿---
+layout: post
+title: "Nouse eCalendar, Part 2"
+date: 2026-05-20
+tags: [hacking, android, ai, claude]
+summary: "Hardware debugging is outside my wheelhouse — so I handed the logs to Claude to figure out why this WiFi chip keeps dying."
+---
+
+<p class="post-tagline">{{ page.summary }}</p>
+<div class="star-divider">✦ ✦ ✦</div>
+
+<nav class="toc">
+    <strong>Table of Contents</strong>
+    <ol>
+        <li><a href="#recap">Recap</a></li>
+        <li><a href="#diagnosis">Diagnosis</a></li>
+        <li><a href="#fixes">Fixes to Try</a></li>
+        <li><a href="#outcome">Outcome</a></li>
+    </ol>
+</nav>
+<br />
+
+<h2 id="recap">Recap</h2>
+<p>
+    I was gifted an Anyuse eCalendar — a 16-inch Android touchscreen meant to
+    serve as a household command center. Nearly every feature depends on WiFi,
+    and the device drops its connection daily without recovering on its own. In
+    Part 1, I tried various workarounds using automation apps, but hit a wall
+    with root access limitations.
+</p>
+
+<h2 id="diagnosis">Diagnosis</h2>
+<p>
+    I pulled the device logs and had Claude analyze them. The diagnosis: the
+    WiFi scanning process is getting stuck. The WiFi chip (AIC8800) has a
+    documented reputation for instability across platforms. The driver enters a
+    deadlocked state and eventually the device forces a disconnection.
+</p>
+
+<h2 id="fixes">Fixes to Try</h2>
+<ol>
+    <li>Update WiFi Driver</li>
+    <li>Factory Reset WiFi Settings</li>
+    <li>Check for System Updates</li>
+    <li>Disable WiFi Power Saving</li>
+    <li>Reset Network Settings</li>
+</ol>
+
+<h2 id="outcome">Outcome</h2>
+<p>
+    While toggling WiFi state programmatically requires root, there's another
+    angle worth exploring: simulated taps. An automation flow could tap through
+    the Settings UI to toggle WiFi manually — no root required. See you in Part
+    3.
+</p>

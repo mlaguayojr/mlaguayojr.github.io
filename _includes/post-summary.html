@@ -1,0 +1,111 @@
+<section id="blog">
+    <div id="blog-controls">
+        <input type="text" id="blog-search" placeholder="Search posts..." />
+        <div id="tag-filters">
+            {% assign all_tags = "" | split: "" %}
+            {% for post in site.posts %}
+                {% for tag in post.tags %}
+                    {% unless all_tags contains tag %}
+                        {% assign all_tags = all_tags | push: tag %}
+                    {% endunless %}
+                {% endfor %}
+            {% endfor %}
+            {% assign sorted_tags = all_tags | sort %}
+            {% for tag in sorted_tags %}
+                <button class="tag-filter" data-tag="{{ tag }}">#{{ tag }}</button>
+            {% endfor %}
+        </div>
+        <div id="blog-summary">{{ site.posts | size }}&nbsp;{% if site.posts.size == 1 %}post{% else %}posts{% endif %}&nbsp;available</div>
+    </div>
+
+    <div class="project-list">
+        {% for post in site.posts %}
+        <div
+            class="project-card"
+            data-tags="{% for tag in post.tags %}{{ tag }},{% endfor %}"
+        >
+            <h3>
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <time
+                class="post-date"
+                datetime="{{ post.date | date: '%Y-%m-%dT%H:%M:%S' }}"
+            >
+                {{ post.date | date: "%B %d, %Y" }}
+            </time>
+            {% if post.summary %}
+            <p>{{ post.summary }}</p>
+            {% endif %} {% if post.tags %}
+            <div class="post-tags">
+                {% for tag in post.tags %}
+                <span class="post-tag">#{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    let selectedTags = new Set();
+
+    // Tag filter buttons
+    document.querySelectorAll(".tag-filter").forEach((button) => {
+        button.addEventListener("click", function () {
+            const tag = this.dataset.tag;
+            if (selectedTags.has(tag)) {
+                selectedTags.delete(tag);
+                this.classList.remove("active");
+            } else {
+                selectedTags.add(tag);
+                this.classList.add("active");
+            }
+            filterPosts();
+        });
+    });
+
+    // Search input
+    document.getElementById("blog-search").addEventListener("input", function () {
+        filterPosts();
+    });
+
+    function filterPosts() {
+        const query = document.getElementById("blog-search").value.toLowerCase();
+        let visibleCount = 0;
+        const totalCount = document.querySelectorAll(".project-card").length;
+
+        document.querySelectorAll(".project-card").forEach((card) => {
+            const title = card.querySelector("h3").textContent.toLowerCase();
+            const tagsStr = card.dataset.tags || "";
+            const postTags = tagsStr.split(",").filter((t) => t.trim());
+
+            const matchesSearch = title.includes(query);
+            const matchesTags =
+                selectedTags.size === 0 ||
+                postTags.some((tag) => selectedTags.has(tag.trim()));
+
+            const isVisible = matchesSearch && matchesTags;
+            card.style.display = isVisible ? "" : "none";
+            if (isVisible) visibleCount++;
+        });
+
+        updateSummary(visibleCount, totalCount);
+    }
+
+    function updateSummary(visibleCount, totalCount) {
+        const summaryEl = document.getElementById("blog-summary");
+        const hasFilters =
+            document.getElementById("blog-search").value.trim() !== "" ||
+            selectedTags.size > 0;
+
+        if (hasFilters) {
+            const postLabel = visibleCount === 1 ? "post" : "posts";
+            const totalLabel = totalCount === 1 ? "post" : "posts";
+            summaryEl.textContent = `${visibleCount} ${postLabel} (filtered from ${totalCount} ${totalLabel} available)`;
+        } else {
+            const postLabel = totalCount === 1 ? "post" : "posts";
+            summaryEl.textContent = `${totalCount} ${postLabel} available`;
+        }
+    }
+</script>

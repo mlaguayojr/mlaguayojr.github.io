@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Blog &mdash; Mario L. Aguayo Jr.</title>
-</head>
-<body>
+---
+layout: default
+title: Blog
+---
 
-  <aside id="sidebar"></aside>
-
-  <main>
-    <nav class="main-nav"></nav>
-
-    <div id="blog-controls">
-      <input type="text" id="blog-search" placeholder="Search posts…" autocomplete="off" />
-      <div id="tag-filters"></div>
-      <div id="blog-summary"></div>
-    </div>
-
-    <section id="blog"></section>
-  </main>
-
-  <script src="../js/head.js"></script>
-  <script src="../js/sidebar.js"></script>
-  <script src="../js/nav.js"></script>
-  <script src="../js/blog.js"></script>
-</body>
-</html>
+{% include post-summary.html %}
