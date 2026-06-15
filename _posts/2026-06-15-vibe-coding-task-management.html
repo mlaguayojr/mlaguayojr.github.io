@@ -1,0 +1,153 @@
+---
+layout: post
+title: "Vibe Coding a Task Management System"
+date: 2026-06-15
+tags: [ai, claude, project]
+summary: "No specs. No CLAUDE.md. No project instructions. Just raw chat and maximum vibing — to see if the horrors are
+real."
+---
+
+<p class="post-tagline">{{ page.summary }}</p>
+<div class="star-divider">✦ ✦ ✦</div>
+
+<nav class="toc">
+  <strong>Table of Contents</strong>
+  <ol>
+    <li><a href="#the-setup">The Setup</a></li>
+    <li><a href="#why-this-experiment">Why This Experiment</a></li>
+    <li><a href="#how-it-went">How It Went</a></li>
+    <li><a href="#the-horrors">The Horrors — Real or Myth?</a></li>
+  </ol>
+</nav>
+<br />
+
+<h2 id="the-setup">The Setup</h2>
+<p>
+  No specs. No <code>CLAUDE.md</code>. No project instructions file. No carefully scaffolded
+  prompts. Just me, Claude Code, and a blank directory.
+</p>
+<p>
+  The project: a task management system. Something concrete enough to build end-to-end, complex
+  enough to stress-test the workflow. The repo is on GitHub:
+  <a href="https://github.com/mlaguayojr/TaskManagementSystemVibe" target="_blank">TaskManagementSystemVibe</a>.
+</p>
+<p>
+  If you've read my post on the
+  <a href="/blog/solovis-ai-hackathon/">Solovis AI-First Hackathon</a>, you already know I've
+  used Claude Code to build things fast under pressure. That experience was structured &mdash; I knew
+  the domain, I had a specific goal, and I had the context of work to anchor my prompts. This was
+  different. This was pure vibe.
+</p>
+
+<h2 id="why-this-experiment">Why This Experiment</h2>
+<p>
+  Scroll through any tech-adjacent feed &mdash; Facebook, Instagram, LinkedIn, the comment section of a
+  news article about AI &mdash; and you'll find the same genre of post. Someone describing how vibe
+  coding devolved into chaos: a tangled codebase, a model that kept rewriting everything, features
+  that broke other features, sessions that lost all context, and a final product that technically
+  ran but was impossible to reason about.
+</p>
+<p>
+  The warnings stack up. <em>"It works until it doesn't."</em>
+  <em>"You'll hit a wall around 1,000 lines."</em>
+  <em>"The model starts hallucinating its own architecture."</em>
+  <em>"You lose the thread and so does Claude."</em>
+</p>
+<p>
+  I wanted to see it for myself. Not read about it, not watch a YouTube breakdown &mdash; actually sit
+  down, open a terminal, and find out where the friction lives. A task management system felt like the
+  right target: it's a domain everyone understands, has enough moving parts to be interesting (tasks,
+  users, statuses, deadlines, maybe some persistence), and isn't so complex that failure would be
+  trivially expected.
+</p>
+
+<h2 id="how-it-went">How It Went</h2>
+<p>
+  The friction showed up in the details. Not in catastrophic failures, but in the kind of
+  paper-cuts that add up as scope grows.
+</p>
+
+<h3>Database Migrations &mdash; Hit or Miss</h3>
+<p>
+  Entity Framework migrations were about 50/50. Claude would generate migration code, but I'd run
+  into a few instances where the <code>.Designer.cs</code> file went missing after applying the migration. The
+  database itself was fine &mdash; Claude confirmed the schema changes were actually applied &mdash;
+  but the project file stayed out of sync. To my half-surprise, Claude did sometimes suggest (and do) dropping
+  the database entirely instead of addressing the migration itself.
+</p>
+
+<h3>Enum Drift</h3>
+<p>
+  I'd define an enum with specific values &mdash; say, <code>Created</code>, <code>InProgress</code>,
+  <code>Completed</code>. Claude would absorb that, but then when implementing logic that used the
+  enum, it would use a <em>similar</em> value instead of the exact one: <code>New</code> instead of
+  <code>Created</code>, for example. Between this and the Database Migrations, I had to frequently
+  manually rebuild the application to catch build errors.
+</p>
+
+<h3>Feature Creep &mdash; And Feature Loss</h3>
+<p>
+  I asked for a set of new features, or even to add on to existing logic. Somehow, some of those
+  original features got stripped out. I had to go back, point out what was missing, and ask Claude
+  to reincorporate them. This happened a few times. Each time, it felt like a context loss: the model
+  wasn't tracking what we'd already built.
+</p>
+
+<h3>Implementing JWT - Namespace Hell</h3>
+<p>
+  When I asked Claude to add JWT Authorization logic, it needed to find the correct namespace to work
+  with. I'd set Claude to Auto mode with permission bypass (risky, I know), so it went into a loop
+  spawning ILSpy processes to inspect DLLs and figure out what was available. My desktop turned into a
+  gallery of ILSpy windows trying to answer the same question over and over. The approach worked
+  eventually, but it wasn't elegant.
+</p>
+
+
+<h2 id="the-horrors">The Horrors &mdash; Real or Myth?</h2>
+<p>
+  The hackathon gave me a reference point. During that build, I had context, structure, and a time
+  box. This experiment stripped all of that away on purpose. The comparison is worth making: how much
+  of what makes Claude Code effective comes from the structure <em>you</em> bring, versus what the
+  tool provides on its own?
+</p>
+<p>
+  There's definitely friction in going in without a plan. Context loss, needing to <code>/compact</code> often, and
+  needing to
+  have Claude double-check its work are noticeable challenges in a vibe-coding session. But Claude did handle the mixed
+  codebase
+  of C# and React fairly well &mdash; so it's not that vibe coding is doomed, it's that structure matters more than I
+  initially thought.
+</p>
+<p>
+  If I were to do this again, I'd introduce a few guardrails:
+<ol>
+  <li><strong>Create a CLAUDE.md file.</strong> Include context about the project, domain, architectural patterns, and
+    enum/naming conventions. This would have prevented enum drift and reduced Claude's second-guessing on what values to
+    use.</li>
+  <li><strong>Implement features in isolated spec files.</strong> Define the feature, its inputs, outputs, and success
+    criteria upfront. This creates a contract that Claude can reference without losing track of what was already built.
+  </li>
+  <li><strong>Use separate chats per feature.</strong> This prevents context bloat and reduces the need to
+    <code>/compact</code>. Each feature stays in its own thread, avoiding the cascading feature loss that happened when
+    changes rippled across the codebase.</li>
+  <li><strong>Enforce a no-drop-database rule.</strong> Add explicit guidance that dropping the database should never
+    happen without approval. Make it a conscious decision, not a shortcut Claude reaches for when migration debugging
+    gets tedious.</li>
+</ol>
+</p>
+<p>
+  Vibe coding isn't broken, but is definitely more successful and less painful when giving strong structure and
+  guidance. The horrors people describe on social media should be a strong reminder to take that extra time to outline,
+  document, poc, and ask questions. Structure first, vibes second 😎.
+</p>
+
+<div class="sources">
+  <h3>Project</h3>
+  <ul>
+    <li>
+      <a href="https://github.com/mlaguayojr/TaskManagementSystemVibe" target="_blank">
+        TaskManagementSystemVibe &mdash; GitHub
+      </a>
+    </li>
+  </ul>
+</div>
