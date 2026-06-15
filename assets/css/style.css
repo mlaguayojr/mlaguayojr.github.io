@@ -510,6 +510,7 @@ ul.career-subtopics > li {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  margin-bottom: 0;
 }
 
 .education-entry {
@@ -559,6 +560,80 @@ ul.career-subtopics > li {
   gap: 0.2rem;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+/* Certificates */
+.section-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+}
+
+.certificates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.certificate-entry {
+  border-left: 3px solid transparent;
+  padding: 0.75rem 1rem;
+}
+
+.certificate-entry:nth-child(1) {
+  border-left-color: var(--accent);
+}
+.certificate-entry:nth-child(2) {
+  border-left-color: color-mix(in srgb, var(--accent), white 30%);
+}
+.certificate-entry:nth-child(3) {
+  border-left-color: color-mix(in srgb, var(--accent), white 60%);
+}
+
+.certificate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.certificate-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.certificate-offered-by {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+.certificate-date {
+  font-size: 0.8rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.certificate-description {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.certificate-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.certificate-link:hover {
+  text-decoration: underline;
 }
 
 /* ── Responsive ── */
@@ -657,6 +732,54 @@ ul.career-subtopics > li {
   .main-nav {
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  /* Responsive: Certificates and Education */
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .certificates-list {
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .certificate-entry {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .certificate-header {
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
+
+  .certificate-date {
+    white-space: normal;
+  }
+
+  .certificate-description {
+    font-size: 0.85rem;
+  }
+
+  .education-entry {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .education-header {
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
+
+  .education-duration {
+    white-space: normal;
+  }
+
+  .education-details {
+    padding-left: 1rem;
+    font-size: 0.85rem;
   }
 }
 

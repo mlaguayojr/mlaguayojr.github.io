@@ -1,3 +1,16 @@
+certificates:
+  - course_name: "Introduction to Claude Cowork"
+    completion_date: "June 14, 2026"
+    offered_by: "Anthropic Education"
+    description: "Learn to work alongside Claude on your real files and projects. This hands-on course covers the Cowork task loop, plugins and skills, file and research workflows, and how to steer multi-step work responsibly — so you're productive in your first week."
+    verify_url: "https://verify.skilljar.com/c/kz4jmvfiawww"
+  - course_name: "Claude 101"
+    completion_date: "June 11, 2026"
+    offered_by: "Anthropic Education"
+    description: "Learn how to use Claude for everyday work tasks, understand core features, and explore resources for more advanced learning on other topics."
+    verify_url: "https://verify.skilljar.com/c/4qsrpjry5qrz"
+
+
 education:
   - institution: "Southern Connecticut State University"
     degree: "Bachelor of Applied Science (B.A.Sc.), Computer Science"
