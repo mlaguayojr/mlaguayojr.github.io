@@ -469,7 +469,9 @@ ul.career-subtopics > li {
   border-top: 1px solid var(--border);
 }
 
-.career-related-posts h4 {
+.career-related-posts h4,
+.career-related-posts h5 {
+  width: 100%;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--muted);
