@@ -340,10 +340,20 @@ a:hover {
 }
 
 .post-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin-top: 0.6rem;
+}
+
+.post-footer h3 {
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
 }
 
 .post-tag {
