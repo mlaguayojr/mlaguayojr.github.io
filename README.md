@@ -26,7 +26,7 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 
 - **[Jekyll](https://jekyllrb.com/)** — static site generator with Liquid templating
 - **Liquid** — server-side templating for layouts, includes, and data rendering
-- **YAML** — structured data for site configuration, navigation, skills, career, and education
+- **YAML** — structured data for site configuration, navigation, career, and education
 - **HTML/CSS/JavaScript** — semantic markup, CSS variables for theming, minimal JS for theme toggle
 - **Docker** — containerized build and serve environment for consistency
 - **GitHub Pages** — static hosting
@@ -47,7 +47,7 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 │   ├── head.html            # <head> with stylesheets and meta tags
 │   ├── sidebar.html         # Profile card with theme toggle
 │   ├── nav.html             # Main navigation
-│   ├── skills.html          # Skills grid
+│   ├── about.html           # About page content
 │   ├── career.html          # Career entries with skills and subtopics
 │   ├── education.html       # Education entries
 │   ├── post-summary.html    # Blog post listing with search
@@ -56,8 +56,7 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 ├── _data/                   # YAML data files
 │   ├── site.yml             # Sidebar data (name, bio, social links)
 │   ├── nav.yml              # Navigation items
-│   ├── skills.yml           # Skills list
-│   ├── career.yml           # Career history (6 jobs with details)
+│   ├── career.yml           # Career history with details
 │   └── education.yml        # Education entries
 │
 ├── _posts/                  # Blog posts (Jekyll collection)
@@ -69,6 +68,9 @@ Check it out [mlaguayojr.github.io](https://mlaguayojr.github.io)!
 │   │   └── blog-post.css    # Blog post–specific styles
 │   ├── images/              # Blog post images
 │   └── avatar.jpg           # Profile avatar
+│
+├── demos/                   # Demo projects
+│   └── keypadjs/            # Keypad.js demo
 │
 ├── index.html               # About page
 ├── blog/index.html          # Blog listing page
@@ -136,7 +138,6 @@ summary: "Brief summary shown in listings"
 Edit the corresponding YAML file in `_data/`:
 - `site.yml` — sidebar name, bio, social links
 - `nav.yml` — navigation items
-- `skills.yml` — skills list
 - `career.yml` — career history
 - `education.yml` — education entries
 
