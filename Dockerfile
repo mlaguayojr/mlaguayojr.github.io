@@ -9,6 +9,12 @@ RUN apt-get update && apt-get install -y \
 
 RUN gem install bundler jekyll
 
+COPY Gemfile Gemfile.lock ./
+
+RUN bundle install
+
 COPY . .
 
-RUN bundle install || true
+EXPOSE 4000
+
+CMD ["jekyll", "serve", "--host", "0.0.0.0", "--force_polling", "--drafts"]

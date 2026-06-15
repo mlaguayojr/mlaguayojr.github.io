@@ -1,0 +1,12 @@
+.git
+.github
+.gitignore
+.claude
+.jekyll-metadata
+_site
+.sass-cache
+node_modules
+*.md
+.DS_Store
+.vscode
+*.local.json

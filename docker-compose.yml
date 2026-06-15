@@ -1,11 +1,8 @@
 services:
   jekyll:
+    container_name: jekyll-local
     build: .
     ports:
-      - "3000:3000"
+      - "4000:4000"
     volumes:
       - .:/app
-    environment:
-      - JEKYLL_ENV=development
-      - JEKYLL_WATCH=true
-    command: jekyll serve --host 0.0.0.0 --port 3000 --watch --incremental --force_polling
