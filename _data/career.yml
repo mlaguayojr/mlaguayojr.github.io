@@ -15,7 +15,7 @@ career:
       - "ASP.NET"
       - "React"
       - "TypeScript"
-      - "TanStack Query"
+      - "TanStack"
       - "Entity Framework"
       - "Azure"
       - "Terraform"
@@ -45,6 +45,12 @@ career:
       - "MassTransit"
       - "nx.dev"
       - "PagerDuty"
+      - "PowerShell"
+      - "ETL"
+      - "Data Pipelines"
+      - "Snowflake"
+      - "JetBrains Rider"
+      - "Redis"
     content:
       - topic: "Engineered Core Data Platform, a self-service ETL application empowering users to extract datasets from the Solovis ecosystem."
         subtopic:
