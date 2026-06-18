@@ -13,6 +13,7 @@
       {{ site.posts | size }}&nbsp;{% if site.posts.size == 1 %}post{% else %}posts{% endif
       %}&nbsp;available
     </div>
+    <button id="clear-filters" style="display:none">Clear filters</button>
   </div>
 
   <div class="project-list">
@@ -36,6 +37,7 @@
     </div>
     {% endfor %}
   </div>
+
 </section>
 
 <script>
@@ -96,5 +98,14 @@
       const postLabel = totalCount === 1 ? "post" : "posts";
       summaryEl.textContent = `${totalCount} ${postLabel} available`;
     }
+
+    document.getElementById("clear-filters").style.display = hasFilters ? "inline-block" : "none";
   }
+
+  document.getElementById("clear-filters").addEventListener("click", () => {
+    document.getElementById("blog-search").value = "";
+    selectedTags.clear();
+    document.querySelectorAll(".tag-filter").forEach((btn) => btn.classList.remove("active"));
+    filterPosts();
+  });
 </script>
