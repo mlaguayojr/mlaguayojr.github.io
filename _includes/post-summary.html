@@ -38,10 +38,18 @@
     {% endfor %}
   </div>
 
+  <div id="blog-pagination">
+    <button id="prev-page" disabled>&#8592; Prev</button>
+    <span id="page-info"></span>
+    <button id="next-page">Next &#8594;</button>
+  </div>
 </section>
 
 <script>
+  const POSTS_PER_PAGE = 5;
   let selectedTags = new Set();
+  let currentPage = 1;
+  let currentFiltered = [];
 
   // Tag filter buttons
   document.querySelectorAll(".tag-filter").forEach((button) => {
@@ -65,10 +73,9 @@
 
   function filterPosts() {
     const query = document.getElementById("blog-search").value.toLowerCase();
-    let visibleCount = 0;
-    const totalCount = document.querySelectorAll(".project-card").length;
+    const allCards = [...document.querySelectorAll(".project-card")];
 
-    document.querySelectorAll(".project-card").forEach((card) => {
+    currentFiltered = allCards.filter((card) => {
       const title = card.querySelector("h3").textContent.toLowerCase();
       const tagsStr = card.dataset.tags || "";
       const postTags = tagsStr.split(",").filter((t) => t.trim());
@@ -77,13 +84,50 @@
       const matchesTags =
         selectedTags.size === 0 || postTags.some((tag) => selectedTags.has(tag.trim()));
 
-      const isVisible = matchesSearch && matchesTags;
-      card.style.display = isVisible ? "" : "none";
-      if (isVisible) visibleCount++;
+      return matchesSearch && matchesTags;
     });
 
-    updateSummary(visibleCount, totalCount);
+    currentPage = 1;
+    renderPage();
+    updateSummary(currentFiltered.length, allCards.length);
   }
+
+  function renderPage() {
+    const allCards = document.querySelectorAll(".project-card");
+    const start = (currentPage - 1) * POSTS_PER_PAGE;
+    const end = start + POSTS_PER_PAGE;
+    const pageSet = new Set(currentFiltered.slice(start, end));
+
+    allCards.forEach((card) => {
+      card.style.display = pageSet.has(card) ? "" : "none";
+    });
+
+    updatePagination(currentFiltered.length);
+  }
+
+  function updatePagination(total) {
+    const totalPages = Math.max(1, Math.ceil(total / POSTS_PER_PAGE));
+    const paginationEl = document.getElementById("blog-pagination");
+    paginationEl.style.display = totalPages <= 1 ? "none" : "flex";
+    document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
+    document.getElementById("prev-page").disabled = currentPage === 1;
+    document.getElementById("next-page").disabled = currentPage === totalPages;
+  }
+
+  document.getElementById("prev-page").addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPage();
+    }
+  });
+
+  document.getElementById("next-page").addEventListener("click", () => {
+    const totalPages = Math.ceil(currentFiltered.length / POSTS_PER_PAGE);
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderPage();
+    }
+  });
 
   function updateSummary(visibleCount, totalCount) {
     const summaryEl = document.getElementById("blog-summary");
@@ -108,4 +152,6 @@
     document.querySelectorAll(".tag-filter").forEach((btn) => btn.classList.remove("active"));
     filterPosts();
   });
+
+  filterPosts();
 </script>
