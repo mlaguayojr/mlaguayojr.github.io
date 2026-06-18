@@ -1,6 +1,9 @@
 <section id="blog">
   <div id="blog-controls">
-    <input type="text" id="blog-search" placeholder="Search posts..." />
+    <div id="search-container">
+      <input type="text" id="blog-search" placeholder="Search posts..." />
+      <button id="clear-search" aria-label="Clear search" style="display:none">✕</button>
+    </div>
     <div id="tag-filters">
       {% assign all_tags = "" | split: "" %} {% for post in site.posts %} {% for tag in post.tags %}
       {% unless all_tags contains tag %} {% assign all_tags = all_tags | push: tag %} {% endunless
@@ -68,8 +71,22 @@
 
   // Search input
   document.getElementById("blog-search").addEventListener("input", function () {
+    updateClearSearchButton();
     filterPosts();
   });
+
+  // Clear search button
+  document.getElementById("clear-search").addEventListener("click", function () {
+    document.getElementById("blog-search").value = "";
+    updateClearSearchButton();
+    filterPosts();
+  });
+
+  function updateClearSearchButton() {
+    const clearBtn = document.getElementById("clear-search");
+    const searchValue = document.getElementById("blog-search").value.trim();
+    clearBtn.style.display = searchValue ? "flex" : "none";
+  }
 
   function filterPosts() {
     const query = document.getElementById("blog-search").value.toLowerCase();

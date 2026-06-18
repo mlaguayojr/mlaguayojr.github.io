@@ -805,9 +805,15 @@ div.code-block {
   gap: 0.75rem;
 }
 
+#search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 #blog-search {
   width: 100%;
-  padding: 0.45rem 0.75rem;
+  padding: 0.45rem 2.25rem 0.45rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: 4px;
   background: var(--sidebar-bg);
@@ -819,6 +825,25 @@ div.code-block {
 #blog-search:focus {
   outline: none;
   border-color: var(--accent);
+}
+
+#clear-search {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#clear-search:hover {
+  color: var(--accent);
 }
 
 #tag-filters {
