@@ -1,30 +1,7 @@
 <section id="education">
-  {% if site.data.education.certificates %}
-  <h3 class="section-subtitle">Certificates</h3>
-  <div class="certificates-list">
-    {% for cert in site.data.education.certificates %}
-    <div class="certificate-entry">
-      <div class="certificate-header">
-        <div>
-          <div class="certificate-name">{{ cert.course_name }}</div>
-          {% if cert.offered_by %}<div class="certificate-offered-by">{{ cert.offered_by }}</div>{% endif %}
-        </div>
-        <div class="certificate-date">{{ cert.completion_date }}</div>
-      </div>
-      {% if cert.description %}
-      <p class="certificate-description">{{ cert.description }}</p>
-      {% endif %}
-      {% if cert.verify_url %}
-      <a href="{{ cert.verify_url }}" class="certificate-link" target="_blank">Verify Certificate</a>
-      {% endif %}
-    </div>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-  <h3 class="section-subtitle">Education</h3>
   <div class="education-list">
     {% for edu in site.data.education.education %}
+    <div class="education-card">
     <div class="education-entry">
       <div class="education-header">
         <div>
@@ -41,6 +18,7 @@
         {% endfor %}
       </ul>
       {% endif %}
+    </div>
     </div>
     {% endfor %}
   </div>

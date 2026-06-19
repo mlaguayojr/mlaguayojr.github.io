@@ -1,0 +1,183 @@
+<section id="certificates">
+  <div id="certificates-controls">
+    <div id="search-container">
+      <input type="text" id="certificates-search" placeholder="Search certificates..." />
+      <button id="clear-search" aria-label="Clear search" style="display:none">✕</button>
+    </div>
+    <div id="tag-filters">
+      {% assign all_tags = "" | split: "" %} {% for cert in site.data.certificates.certificates %} {% for tag in cert.tags %}
+      {% unless all_tags contains tag %} {% assign all_tags = all_tags | push: tag %} {% endunless
+      %} {% endfor %} {% unless all_tags contains cert.offered_by %} {% assign all_tags = all_tags | push: cert.offered_by %} {% endunless %} {% endfor %} {% assign sorted_tags = all_tags | sort %} {% for tag in
+      sorted_tags %}
+      <button class="tag-filter" data-tag="{{ tag }}">#{{ tag }}</button>
+      {% endfor %}
+    </div>
+    <div id="certificates-summary">
+      {{ site.data.certificates.certificates | size }}&nbsp;{% if site.data.certificates.certificates.size == 1 %}certificate{% else %}certificates{% endif
+      %}&nbsp;available
+    </div>
+    <button id="clear-filters" style="display:none">Clear filters</button>
+  </div>
+
+  <div class="certificates-list">
+    {% for cert in site.data.certificates.certificates %}
+    <div class="certificate-card" data-tags="{% for tag in cert.tags %}{{ tag }},{% endfor %}{{ cert.offered_by }},">
+      <div class="certificate-entry">
+        <div class="certificate-header">
+          <div>
+            <div class="certificate-name">{{ cert.course_name }}</div>
+            {% if cert.offered_by %}<div class="certificate-offered-by">{{ cert.offered_by }}</div>{% endif %}
+          </div>
+          <div class="certificate-date">{{ cert.completion_date }}</div>
+        </div>
+        {% if cert.description %}
+        <p class="certificate-description">{{ cert.description }}</p>
+        {% endif %}
+        {% if cert.verify_url %}
+        <a href="{{ cert.verify_url }}" class="certificate-link" target="_blank">Verify Certificate</a>
+        {% endif %}
+        {% if cert.tags %}
+        <div class="certificate-tags">
+          {% for tag in cert.tags %}
+          <span class="certificate-tag">#{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div id="certificates-pagination">
+    <button id="prev-page" disabled>&#8592; Prev</button>
+    <span id="page-info"></span>
+    <button id="next-page">Next &#8594;</button>
+  </div>
+</section>
+
+<script>
+  const CERTS_PER_PAGE = 5;
+  let selectedTags = new Set();
+  let currentPage = 1;
+  let currentFiltered = [];
+
+  // Tag filter buttons
+  document.querySelectorAll(".tag-filter").forEach((button) => {
+    button.addEventListener("click", function () {
+      const tag = this.dataset.tag;
+      if (selectedTags.has(tag)) {
+        selectedTags.delete(tag);
+        this.classList.remove("active");
+      } else {
+        selectedTags.add(tag);
+        this.classList.add("active");
+      }
+      filterCertificates();
+    });
+  });
+
+  // Search input
+  document.getElementById("certificates-search").addEventListener("input", function () {
+    updateClearSearchButton();
+    filterCertificates();
+  });
+
+  // Clear search button
+  document.getElementById("clear-search").addEventListener("click", function () {
+    document.getElementById("certificates-search").value = "";
+    updateClearSearchButton();
+    filterCertificates();
+  });
+
+  function updateClearSearchButton() {
+    const clearBtn = document.getElementById("clear-search");
+    const searchValue = document.getElementById("certificates-search").value.trim();
+    clearBtn.style.display = searchValue ? "flex" : "none";
+  }
+
+  function filterCertificates() {
+    const query = document.getElementById("certificates-search").value.toLowerCase();
+    const allCards = [...document.querySelectorAll(".certificate-card")];
+
+    currentFiltered = allCards.filter((card) => {
+      const title = card.querySelector(".certificate-name").textContent.toLowerCase();
+      const offeredBy = card.querySelector(".certificate-offered-by").textContent.toLowerCase();
+      const tagsStr = card.dataset.tags || "";
+      const certTags = tagsStr.split(",").filter((t) => t.trim());
+
+      const matchesSearch = title.includes(query) || offeredBy.includes(query);
+      const matchesTags =
+        selectedTags.size === 0 || certTags.some((tag) => selectedTags.has(tag.trim()));
+
+      return matchesSearch && matchesTags;
+    });
+
+    currentPage = 1;
+    renderPage();
+    updateSummary(currentFiltered.length, allCards.length);
+  }
+
+  function renderPage() {
+    const allCards = document.querySelectorAll(".certificate-card");
+    const start = (currentPage - 1) * CERTS_PER_PAGE;
+    const end = start + CERTS_PER_PAGE;
+    const pageSet = new Set(currentFiltered.slice(start, end));
+
+    allCards.forEach((card) => {
+      card.style.display = pageSet.has(card) ? "" : "none";
+    });
+
+    updatePagination(currentFiltered.length);
+  }
+
+  function updatePagination(total) {
+    const totalPages = Math.max(1, Math.ceil(total / CERTS_PER_PAGE));
+    const paginationEl = document.getElementById("certificates-pagination");
+    paginationEl.style.display = totalPages <= 1 ? "none" : "flex";
+    document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
+    document.getElementById("prev-page").disabled = currentPage === 1;
+    document.getElementById("next-page").disabled = currentPage === totalPages;
+  }
+
+  document.getElementById("prev-page").addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPage();
+    }
+  });
+
+  document.getElementById("next-page").addEventListener("click", () => {
+    const totalPages = Math.ceil(currentFiltered.length / CERTS_PER_PAGE);
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderPage();
+    }
+  });
+
+  function updateSummary(visibleCount, totalCount) {
+    const summaryEl = document.getElementById("certificates-summary");
+    const hasFilters =
+      document.getElementById("certificates-search").value.trim() !== "" || selectedTags.size > 0;
+
+    if (hasFilters) {
+      const certLabel = visibleCount === 1 ? "certificate" : "certificates";
+      const totalLabel = totalCount === 1 ? "certificate" : "certificates";
+      summaryEl.textContent = `${visibleCount} ${certLabel} (filtered from ${totalCount} ${totalLabel} available)`;
+    } else {
+      const certLabel = totalCount === 1 ? "certificate" : "certificates";
+      summaryEl.textContent = `${totalCount} ${certLabel} available`;
+    }
+
+    document.getElementById("clear-filters").style.display = hasFilters ? "inline-block" : "none";
+  }
+
+  document.getElementById("clear-filters").addEventListener("click", () => {
+    document.getElementById("certificates-search").value = "";
+    updateClearSearchButton();
+    selectedTags.clear();
+    document.querySelectorAll(".tag-filter").forEach((btn) => btn.classList.remove("active"));
+    filterCertificates();
+  });
+
+  filterCertificates();
+</script>

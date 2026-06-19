@@ -7,5 +7,7 @@ items:
     path: "/career/"
   - label: "Projects"
     path: "/projects/"
+  - label: "Certificates"
+    path: "/certificates/"
   - label: "Education"
     path: "/education/"

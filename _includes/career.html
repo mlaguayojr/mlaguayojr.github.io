@@ -1,6 +1,7 @@
 <section id="career">
   <div class="career-list">
     {% for job in site.data.career.career %}
+    <div class="career-card">
     <div class="career-entry">
       <div class="career-header">
         <div>
@@ -45,6 +46,7 @@
         </ul>
       </div>
       {% endif %}
+    </div>
     </div>
     {% endfor %} {% if site.data.career.career[0].superscript %}
     <div class="career-footnote"><sup>1</sup> {{ site.data.career.career[0].footnote }}</div>

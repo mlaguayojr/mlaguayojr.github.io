@@ -379,19 +379,14 @@ div.post-tags {
   gap: 1.5rem;
 }
 
-.career-entry {
-  border-left: 3px solid transparent;
-  padding: 0.75rem 1rem;
+.career-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
 }
 
-.career-entry:nth-child(1) {
-  border-left-color: var(--accent);
-}
-.career-entry:nth-child(2) {
-  border-left-color: color-mix(in srgb, var(--accent), white 30%);
-}
-.career-entry:nth-child(3) {
-  border-left-color: color-mix(in srgb, var(--accent), white 60%);
+.career-entry {
+  padding: 0;
 }
 
 .career-header {
@@ -444,13 +439,6 @@ div.post-tags {
   font-weight: 600;
   color: var(--muted);
   margin-bottom: 0.5rem;
-}
-
-.career-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 0;
 }
 
 .career-footnote {
@@ -514,13 +502,14 @@ ul.career-subtopics > li {
   margin-bottom: 0;
 }
 
-.education-entry {
-  border-left: 3px solid transparent;
-  padding: 0.75rem 1rem;
+.education-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
 }
 
-.education-entry:nth-child(1) {
-  border-left-color: var(--accent);
+.education-entry {
+  padding: 0;
 }
 
 .education-header {
@@ -548,11 +537,6 @@ ul.career-subtopics > li {
   margin-bottom: 0.5rem;
 }
 
-.education-location {
-  font-size: 0.875rem;
-  color: var(--muted);
-}
-
 .education-details {
   padding-left: 1.25rem;
   margin-top: 0.75rem;
@@ -564,14 +548,6 @@ ul.career-subtopics > li {
 }
 
 /* Certificates */
-.section-subtitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 0.75rem;
-  margin-top: 0;
-}
-
 .certificates-list {
   display: flex;
   flex-direction: column;
@@ -580,18 +556,7 @@ ul.career-subtopics > li {
 }
 
 .certificate-entry {
-  border-left: 3px solid transparent;
   padding: 0.75rem 1rem;
-}
-
-.certificate-entry:nth-child(1) {
-  border-left-color: var(--accent);
-}
-.certificate-entry:nth-child(2) {
-  border-left-color: color-mix(in srgb, var(--accent), white 30%);
-}
-.certificate-entry:nth-child(3) {
-  border-left-color: color-mix(in srgb, var(--accent), white 60%);
 }
 
 .certificate-header {
@@ -736,18 +701,9 @@ ul.career-subtopics > li {
   }
 
   /* Responsive: Certificates and Education */
-  .section-subtitle {
-    font-size: 1rem;
-    margin-bottom: 0.6rem;
-  }
-
   .certificates-list {
     gap: 0.75rem;
     margin-bottom: 2rem;
-  }
-
-  .certificate-entry {
-    padding: 0.6rem 0.75rem;
   }
 
   .certificate-header {
@@ -762,10 +718,6 @@ ul.career-subtopics > li {
 
   .certificate-description {
     font-size: 0.85rem;
-  }
-
-  .education-entry {
-    padding: 0.6rem 0.75rem;
   }
 
   .education-header {
@@ -928,4 +880,87 @@ div.code-block {
 #page-info {
   font-size: 0.9rem;
   color: var(--muted);
+}
+
+/* Certificates controls */
+#certificates-controls {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+#certificates-search {
+  width: 100%;
+  padding: 0.45rem 2.25rem 0.45rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--sidebar-bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+#certificates-search:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+#certificates-summary {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.certificate-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+}
+
+.certificate-tags {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.certificate-tag {
+  background: var(--tag-bg);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.75rem;
+  display: inline-block;
+  margin-right: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+#certificates-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+#certificates-pagination button {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#certificates-pagination button:disabled {
+  color: var(--muted);
+  cursor: default;
+  opacity: 0.5;
+}
+
+#certificates-pagination button:not(:disabled):hover {
+  background: var(--accent);
+  color: var(--bg);
 }
