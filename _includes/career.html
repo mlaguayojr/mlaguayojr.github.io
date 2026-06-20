@@ -20,13 +20,14 @@
           <ul class="career-topic">
             <li>{{ item.topic }}</li>
             {% if item.subtopic %}
-            <ul class="career-subtopics">
+            <ul class="career-subtopic">
               {% for sub in item.subtopic %}
               <li>{{ sub }}</li>
               {% endfor %}
             </ul>
+            {% endif %}
           </ul>
-          {% endif %} {% endfor %}
+          {% endfor %}
         </div>
         {% endif %} {% if job.skills %}
         <div class="career-skills-section">

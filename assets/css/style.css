@@ -427,6 +427,10 @@ div.post-tags {
   gap: 0.35rem;
 }
 
+.career-topic {
+  list-style: disc;
+}
+
 .career-skills-section {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -454,7 +458,7 @@ div.post-tags {
   padding-top: 0.5rem;
 }
 
-.career-subtopic {
+ul.career-subtopic {
   padding-left: 1.25rem;
   margin-top: 0.25rem;
   display: flex;
