@@ -540,7 +540,12 @@ ul.career-subtopics > li {
   white-space: nowrap;
 }
 
-.education-title {
+.education-degree {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.education-location {
   font-size: 0.875rem;
   color: var(--muted);
   margin-bottom: 0.5rem;
