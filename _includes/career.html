@@ -1,55 +1,105 @@
 <section id="career">
-  <div class="career-list">
+  <div class="career-list" id="career-list">
     {% for job in site.data.career.career %}
     <div class="career-card">
-    <div class="career-entry">
-      <div class="career-header">
-        <div>
-          <div class="career-name">
-            {{ job.name }} {% if job.superscript %}<sup>{{ job.superscript }}</sup>{% endif %}
+      <div class="career-entry">
+        <div class="career-header">
+          <div>
+            <div class="career-name">
+              {{ job.name }} {% if job.superscript %}<sup>{{ job.superscript }}</sup>{% endif %}
+            </div>
+            <div class="career-title">{{ job.title }}</div>
+            <div class="career-location">{{ job.location }}</div>
           </div>
-          <div class="career-title">{{ job.title }} · {{ job.location }}</div>
+          <div class="career-duration">{{ job.duration.start }} - {{ job.duration.end }}</div>
         </div>
-        <div class="career-duration">{{ job.duration.start }} - {{ job.duration.end }}</div>
-      </div>
 
-      {% if job.content %}
-      <div class="career-content">
-        {% for item in job.content %}
-        <ul class="career-topic">
-          <li>{{ item.topic }}</li>
-          {% if item.subtopic %}
-          <ul class="career-subtopics">
-            {% for sub in item.subtopic %}
-            <li>{{ sub }}</li>
+        {% if job.content %}
+        <div class="career-content">
+          {% for item in job.content %}
+          <ul class="career-topic">
+            <li>{{ item.topic }}</li>
+            {% if item.subtopic %}
+            <ul class="career-subtopics">
+              {% for sub in item.subtopic %}
+              <li>{{ sub }}</li>
+              {% endfor %}
+            </ul>
+          </ul>
+          {% endif %} {% endfor %}
+        </div>
+        {% endif %} {% if job.skills %}
+        <div class="career-skills-section">
+          <h5>Skills</h5>
+          {% for skill in job.skills %}
+          <span class="skill-tag">{{ skill }}</span>
+          {% endfor %}
+        </div>
+        {% endif %} {% if job.relatedPosts %}
+        <div class="career-related-posts">
+          <h5>Related Posts</h5>
+          <ul>
+            {% for post in job.relatedPosts %}
+            <li>
+              <a href="{% if post.external %}{{ post.path }}{% else %}{{ post.path | relative_url }}{% endif %}" {% if
+                post.external %}target="_blank" rel="noopener noreferrer" {% endif %}>{{ post.title }}{% if
+                post.external %} <span class="external-link-icon" aria-label="external link">↗</span>{% endif %}</a>
+            </li>
             {% endfor %}
           </ul>
-        </ul>
-        {% endif %} {% endfor %}
+        </div>
+        {% endif %} {% if job.footnote %}
+        <div class="career-footnote"><sup>{{ job.superscript }}</sup> {{ job.footnote }}</div>
+        {% endif %}
       </div>
-      {% endif %} {% if job.skills %}
-      <div class="career-skills-section">
-        <h5>Skills</h5>
-        {% for skill in job.skills %}
-        <span class="skill-tag">{{ skill }}</span>
-        {% endfor %}
-      </div>
-      {% endif %} {% if job.relatedPosts %}
-      <div class="career-related-posts">
-        <h5>Related Posts</h5>
-        <ul>
-          {% for post in job.relatedPosts %}
-          <li>
-            <a href="{{ post.path | relative_url }}">{{ post.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
     </div>
-    </div>
-    {% endfor %} {% if site.data.career.career[0].superscript %}
-    <div class="career-footnote"><sup>1</sup> {{ site.data.career.career[0].footnote }}</div>
-    {% endif %}
+    {% endfor %}
+  </div>
+
+  <div id="career-pagination">
+    <button id="career-prev-page" disabled>&#8592; Prev</button>
+    <span id="career-page-info"></span>
+    <button id="career-next-page">Next &#8594;</button>
   </div>
 </section>
+
+<script>
+  const CAREERS_PER_PAGE = 3;
+  let currentPage = 1;
+
+  function renderCareerPage() {
+    const allCards = [...document.querySelectorAll(".career-card")];
+    const totalPages = Math.max(1, Math.ceil(allCards.length / CAREERS_PER_PAGE));
+    const start = (currentPage - 1) * CAREERS_PER_PAGE;
+    const end = start + CAREERS_PER_PAGE;
+    const pageSet = new Set(allCards.slice(start, end));
+
+    allCards.forEach((card) => {
+      card.style.display = pageSet.has(card) ? "" : "none";
+    });
+
+    document.getElementById("career-page-info").textContent = `Page ${currentPage} of ${totalPages}`;
+    document.getElementById("career-prev-page").disabled = currentPage === 1;
+    document.getElementById("career-next-page").disabled = currentPage === totalPages;
+
+    const paginationEl = document.getElementById("career-pagination");
+    paginationEl.style.display = totalPages <= 1 ? "none" : "flex";
+  }
+
+  document.getElementById("career-prev-page").addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderCareerPage();
+    }
+  });
+
+  document.getElementById("career-next-page").addEventListener("click", () => {
+    const totalPages = Math.ceil(document.querySelectorAll(".career-card").length / CAREERS_PER_PAGE);
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderCareerPage();
+    }
+  });
+
+  renderCareerPage();
+</script>

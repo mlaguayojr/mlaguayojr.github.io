@@ -8,7 +8,10 @@ career:
       start: "July 2022"
       end: "June 2026"
     relatedPosts:
-      - title: "Solovis AI-First Hackathon"
+      - title: "(2025) Solovis acquired by Insight Partners"
+        path: "https://www.linkedin.com/posts/solovis_solovis-accelerates-next-phase-of-growth-activity-7384734083966418944-bsxa"
+        external: true
+      - title: "(2026) Solovis AI-First Hackathon"
         path: "/blog/solovis-ai-hackathon/"
     skills:
       - "C#/.NET"
