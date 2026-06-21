@@ -1,4 +1,12 @@
 certificates:
+  - course_name: "AI Fluency: Framework & Foundations"
+    completion_date: "June 21, 2026"
+    offered_by: "Anthropic Education"
+    description: "Learn to collaborate with AI systems effectively, efficiently, ethically, and safely."
+    verify_url: "https://verify.skilljar.com/c/xumqmfbwh2zx"
+    tags:
+      - ai
+      - claude
   - course_name: "Claude Code 101"
     completion_date: "June 17, 2026"
     offered_by: "Anthropic Education"
