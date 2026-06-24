@@ -1,51 +1,27 @@
 ---
 name: blog-posts
 description: Structures Blog Posts. Use when creating, drafting, adding, writing, or publishing a Blog Post.
+metadata:
+  disable-model-invocation: true
+  model: haiku
+  allowed-tools: Read Grep Edit Glob powershell Write
+  disallowed-tools: Bash
 ---
 
 ## Project Structure
 
-- `_posts/` — directory containing all blog posts
-- `_posts/YYYY-MM-DD-slug.html` — individual post file with Jekyll YAML front matter
-- `assets/css/blog-post.css` — post-specific styling
-- `_layouts/post.html` — Jekyll layout for blog posts (handles title, date, tags, content)
-- `_includes/post-summary.html` — blog listing page template (auto-generates from `_posts/` collection)
-- `blog/index.html` — landing page; automatically rendered from Jekyll posts collection
-- `README.md` — project documentation; update when major structural changes occur
+- `_posts/` — all blog posts; Jekyll auto-processes every file here
+- `_posts/YYYY-MM-DD-slug.html` — individual post; requires Jekyll YAML front matter
+- `_layouts/post.html` — Jekyll layout applied to every post (renders title, date, reading time, tags, content)
+- `_includes/post-summary.html` — blog listing card template; used by the posts collection
+- `blog/index.html` — blog landing page; rendered automatically from the Jekyll posts collection
+- `assets/css/blog-post.css` — post-specific styles (tagline, star divider, TOC, sources block)
 
 ## Post Title Naming
 
 - Use a short, descriptive slug (2–5 words). Example: `nouse-anyuse-ecalendar`, `2026-portfolio-redesign`
 - Filename format: `YYYY-MM-DD-slug.html` (Jekyll standard). Example: `2026-06-01-kaprekar-constant-6174.html`
 - For multi-part series, append `-part-N` to the slug. Example: `2026-05-20-nouse-ecalendar-part-2.html`
-
-## HTML Template
-
-Use this structure for every new post. Adjust front matter and content to match the post.
-
-```html
----
-layout: post
-title: "Post Title"
-date: 2026-06-01
-tags: [tag1, tag2]
-summary: "One sentence summary — use em dashes like this."
----
-
-<p class="post-tagline">{{ page.summary }}</p>
-<div class="star-divider">✦ ✦ ✦</div>
-
-<nav class="toc">
-  <strong>Table of Contents</strong>
-  <ol>
-    <li><a href="#section">Section</a></li>
-  </ol>
-</nav>
-<br>
-
-<!-- post content -->
-<!-- Note: add <br> after every <ul> or <ol> to preserve spacing before the next paragraph -->
-```
 
 ## YAML Front Matter
 
