@@ -291,13 +291,7 @@ a:hover {
   font-weight: 600;
 }
 
-#blog .post-header {
-  text-transform: capitalize;
-}
-
-#blog .post-date,
-#blog .post-separator,
-#blog .reading-time {
+#blog .post-date {
   text-transform: none;
 }
 
@@ -335,10 +329,6 @@ a:hover {
   white-space: nowrap;
 }
 
-.post-separator {
-  color: var(--muted);
-  font-size: 0.8rem;
-}
 
 .post-footer {
   margin-top: 1rem;
@@ -467,9 +457,6 @@ ul.career-subtopic {
   color: var(--muted);
 }
 
-ul.career-subtopics > li {
-  margin-left: 1rem;
-}
 
 .career-related-posts {
   margin-top: 1rem;
