@@ -31,7 +31,7 @@ summary: "Making an eCalendar stay connected to WiFi &mdash; you know, the bare 
         <p>
           I was recently gifted an <a
             href="https://www.amazon.com/Calendar-Touchscreen-Organizer-Planning-Rewards%EF%BC%88White%EF%BC%89/dp/B0GR4HBSYL/"
-            target="_blank">Anyuse eCalendar</a> &mdash; a 16-inch touchscreen device designed to serve as a household
+            target="_blank" rel="noopener noreferrer">Anyuse eCalendar <span class="external-link-icon" aria-label="external link">↗</span></a> &mdash; a 16-inch touchscreen device designed to serve as a household
           command center.
           On paper, it covers a lot of ground. It can sync with Google and iCloud calendars, help manage family chores,
           track meals, assign task rewards to kids, and double as a digital photo frame when idle.
@@ -56,7 +56,7 @@ summary: "Making an eCalendar stay connected to WiFi &mdash; you know, the bare 
 
         <h3 id="whats-in-the-box">What's in the box?</h3>
         <p>
-          Here's the <a href="https://myecalendar.com/content/calendar_user_manual.pdf">user manual</a> for the device.
+          Here's the <a href="https://myecalendar.com/content/calendar_user_manual.pdf" target="_blank" rel="noopener noreferrer">user manual <span class="external-link-icon" aria-label="external link">↗</span></a> for the device.
           However, there's nothing helpful for what I'm looking for. My assumption is that this is an Android device,
           but I'm unsure of what version. After poking around some posts on their Facebook page, I found a way to access
           a hidden System Settings screen.
@@ -106,8 +106,8 @@ summary: "Making an eCalendar stay connected to WiFi &mdash; you know, the bare 
 
         <h3 id="how-can-i-get-in">How can I get in?</h3>
         So &mdash; Android 10, WiFi-connected. Now how do I get in? Luckily, I've worked with wireless Android devices
-        in the past and have experience with a utility called <a href="https://developer.android.com/tools/adb">ADB
-          (Android Debugging Bridge)</a>.
+        in the past and have experience with a utility called <a href="https://developer.android.com/tools/adb" target="_blank" rel="noopener noreferrer">ADB
+          (Android Debugging Bridge) <span class="external-link-icon" aria-label="external link">↗</span></a>.
         <br>
         <br>
         Let's attempt to connect:
@@ -122,7 +122,7 @@ summary: "Making an eCalendar stay connected to WiFi &mdash; you know, the bare 
         <p>
           Now that we have shell access, the fix is straightforward. Since we can't permanently patch the firmware,
           the next best thing is to automate a workaround. The plan: sideload <a href="https://tasker.joaoapps.com/"
-            target="_blank">Tasker</a>
+            target="_blank" rel="noopener noreferrer">Tasker <span class="external-link-icon" aria-label="external link">↗</span></a>
           &mdash; a powerful Android automation app &mdash; directly onto the device via ADB, no Play Store required.
           <br><br>
           With Tasker installed, a simple profile can be created to toggle WiFi off and back on at a set interval,
@@ -137,7 +137,7 @@ summary: "Making an eCalendar stay connected to WiFi &mdash; you know, the bare 
           Sadly, I've had to abandon Tasker due to needing a license in order to use it more than the trial period of 7
           days.
           I'm going to uninstall and try <a href="https://play.google.com/store/apps/details?id=com.llamalab.automate"
-            target="_blank">Automate</a> instead.
+            target="_blank" rel="noopener noreferrer">Automate <span class="external-link-icon" aria-label="external link">↗</span></a> instead.
           <br><br>
           <strong>Update 2:</strong>
           <br>

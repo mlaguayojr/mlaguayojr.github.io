@@ -178,12 +178,13 @@ summary: "Hardware debugging is outside my wheelhouse &mdash; so I handed the lo
   The WiFi chip in this device is the <strong>AIC8800</strong>, made by Aicsemi, driven by
   <code>aic8800_fdrv</code>. The driver has a documented reputation for instability across platforms
   &mdash; its
-  <a href="https://github.com/radxa-pkg/aic8800/issues" target="_blank">open issue tracker</a>
+  <a href="https://github.com/radxa-pkg/aic8800/issues" target="_blank" rel="noopener noreferrer">open issue tracker <span class="external-link-icon" aria-label="external link">↗</span></a>
   reflects ongoing compatibility problems, and a
   <a
     href="https://forum.armbian.com/topic/50332-aic8800-wifi-sdio-module-not-working-with-kernel-612/"
     target="_blank"
-    >thread on the Armbian forums</a
+    rel="noopener noreferrer"
+    >thread on the Armbian forums <span class="external-link-icon" aria-label="external link">↗</span></a
   >
   confirms it breaking across kernel versions even on actively maintained systems. This device runs
   Android 10, putting it in unsupported territory for a driver that struggles to keep up even on
@@ -282,8 +283,8 @@ adb shell settings put global wifi_frequent_scan_interval 60000</pre
   That said &mdash; while toggling WiFi state programmatically requires root, there&rsquo;s another
   angle worth exploring: simulated taps. Instead of flipping the WiFi toggle directly, an automation
   flow could tap through the Settings UI to do it manually &mdash; no root required. Automate has an
-  <a href="https://llamalab.com/automate/doc/block/interact_touch.html" target="_blank"
-    >Interact Touch</a
+  <a href="https://llamalab.com/automate/doc/block/interact_touch.html" target="_blank" rel="noopener noreferrer"
+    >Interact Touch <span class="external-link-icon" aria-label="external link">↗</span></a
   >
   block that can send taps to arbitrary screen coordinates. If it can reach the WiFi toggle in
   Settings, the whole workaround from Part 1 might still be salvageable.
