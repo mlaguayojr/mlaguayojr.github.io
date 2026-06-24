@@ -1,4 +1,12 @@
 certificates:
+  - course_name: "Introduction to agent skills"
+    completion_date: "June 24, 2026"
+    offered_by: "Anthropic Education"
+    description: "Learn how to build, configure, and share Skills in Claude Code — reusable markdown instructions that Claude automatically applies to the right tasks at   the right time. This course takes you from creating your first Skill to distributing them across teams and troubleshooting common issues."
+    verify_url: "https://verify.skilljar.com/c/q59te4y9nioj"
+    tags:
+      - ai
+      - claude
   - course_name: "AI Fluency: Framework & Foundations"
     completion_date: "June 21, 2026"
     offered_by: "Anthropic Education"
