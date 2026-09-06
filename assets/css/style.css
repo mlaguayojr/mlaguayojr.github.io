@@ -98,6 +98,7 @@ aside {
   font-weight: 700;
   color: var(--accent);
   line-height: 2;
+  width: max-content;
 }
 
 .sidebar-tagline {
@@ -644,6 +645,7 @@ ul.career-subtopic {
     font-size: 1rem;
     line-height: 1.2;
     margin-bottom: 0;
+    width: max-content;
   }
 
   .sidebar-tagline {
