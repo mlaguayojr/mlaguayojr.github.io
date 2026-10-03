@@ -1,0 +1,96 @@
+---
+layout: post
+title: "Reddit: Florida Bar Directory Scraper"
+date: 2026-10-02
+tags: [python, webscrape, project, reddit]
+summary: "A Python script that scrapes lawyer information provided by the Florida Bar."
+---
+
+<p class="post-tagline">{{ page.summary }}</p>
+<div class="star-divider">✦ ✦ ✦</div>
+<nav class="toc">
+    <strong>Table of Contents</strong>
+    <ol>
+        <li><a href="#modernize">Modernize</a></li>
+        <li><a href="#about">About</a></li>
+    </ol>
+</nav>
+<br />
+
+<h2 id="modernize">Modernize Project</h2>
+<p>
+    First, let's bring this project from proof-of-concept to an actual project. Currently, my preference for managing
+    python projects is <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a>.
+    Let's make the following changes:
+<ol>
+    <li>Create uv project: <code>uv init</code></li>
+    <li>Pin to latest version of python (3.14): <code>uv python pin 3.14</code></li>
+    <li>Update dependencies: <code>uv add bs4 requests</code></li>
+</ol>
+</p>
+
+<h2 id="about">About</h2>
+<p>
+    Sometimes coming up with side projects can be difficult. Usually, my source of inspiration for side projects are:
+<ul>
+    <li>learn a new concept, or introduction to a programming language.</li>
+    <li>reduce manual tasks.</li>
+    <li>reverse engineer to learn how something works.</li>
+    <li>resolve some problem that started out as annoying (but manageable) but now has my full attention because its now
+        a blocker.</li>
+</ul>
+<br />
+Every so often I'll poke around Reddit (<a href="https://www.reddit.com/r/python/" target="_blank" rel="noopener noreferrer">/r/python</a>, or <a
+    href="https://www.reddit.com/r/programming/" target="_blank" rel="noopener noreferrer">/r/programming</a>) to see what other poeple are up to. This time,
+I found a user who was attempting to scrape information from a website - favorite of mine!
+<br />
+<br />
+Sadly, <a
+    href="https://www.reddit.com/r/programming/comments/inhelx/trying_to_scrape_a_website_but_i_am_a_idiot_any/" target="_blank" rel="noopener noreferrer">https://www.reddit.com/r/programming/comments/inhelx/trying_to_scrape_a_website_but_i_am_a_idiot_any/</a>
+no longer contains original details, but from what I can recall based on the code written in <a
+    href="https://github.com/mlaguayojr/Laywer-Directory-Scraper" target="_blank" rel="noopener noreferrer">https://github.com/mlaguayojr/Laywer-Directory-Scraper</a>
+repo, it looks like the Redditor was attempting to collect the following attributes from each registered Lawyer provided
+within <a href="https://www.floridabar.org/directories/find-mbr/" target="_blank" rel="noopener noreferrer">Florida Bar</a>:
+<ul>
+    <li>First Name</li>
+    <li>Last Name</li>
+    <li>Email</li>
+    <li>Office Phone</li>
+    <li>Cell Phone</li>
+</ul>
+<br />
+It's been six years since I've ran this code; does it still work?
+
+<figure class="screenshot">
+    <img src="/assets/images/reddit-florida-bar-scraper/screenshot1.png" alt="program output" />
+    <figcaption>Program output with questionable results</figcaption>
+</figure>
+
+🤔 Hmmm - let's debug!
+</p>
+
+<h2 id="debug">Debug</h2>
+<p>
+    okay, so code can execute, however, we aren't getting the expected result. Why?
+    <br />
+    <br />
+    Problem 1: Debugging our script, we see that line 37 returns with a `reason: Forbidden` from our GET Request of
+    <code
+        style="word-wrap: break-word;">https://www.floridabar.org/directories/find-mbr/?lName=&sdx=N&fName=&eligible=Y&deceased=N&firm=&locValue=Florida&locType=S&pracAreas=&lawSchool=&services=&langs=ENGL&certValue=&pageNumber=1&pageSize=50</code>.
+    <br />
+    <br />
+    Problem 2: As well as we reach our Exception on line 39, but the script doesn't surface the error correctly
+    back to
+    the user.
+
+
+    Let's look at the response content to see if there's any useful info.
+
+    picture goes however
+
+    ... ah ...
+</p>
+
+<h2 id="fix">
+    <h3 id="fix-cookies">Fix Cookies</h3>
+</h2>
