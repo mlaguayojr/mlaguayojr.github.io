@@ -1,0 +1,156 @@
+---
+layout: post
+title: "Reddit: Florida Bar Directory Scraper"
+date: 2026-10-02
+tags: [python, webscrape, project, reddit]
+summary: "A Python script that scrapes lawyer information provided by the Florida Bar."
+---
+
+<p class="post-tagline">{{ page.summary }}</p>
+<div class="star-divider">✦ ✦ ✦</div>
+<nav class="toc">
+    <strong>Table of Contents</strong>
+    <ol>
+        <li><a href="#about">About</a></li>
+        <li><a href="#debug">Debug</a></li>
+        <li><a href="#modernize">Modernize</a></li>
+        <li><a href="#fix-httpclient">Fix HTTP Client</a></li>
+        <li><a href="#code-cleanup">Code Cleanup</a></li>
+    </ol>
+</nav>
+<br />
+<h2 id="about">About</h2>
+<p>
+    Back in 2020, I created a web scraper for the <a href="https://www.floridabar.org/directories/find-mbr/"
+        target="_blank" rel="noopener noreferrer">Florida Bar</a>, creatively named <a
+        href="https://www.github.com/mlaguayojr/Laywer-Directory-Scraper" target="_blank"
+        rel="noopener noreferrer">Laywer-Directory-Scraper</a> after discovering a Reddit user expressing difficulty on
+    their attempt of creating their own. I'm fond of web scraping, so I figured I'd dive in to learn more about what
+    they're attempting to do and help where I can.
+    Sadly, the original <a
+        href="https://www.reddit.com/r/programming/comments/inhelx/trying_to_scrape_a_website_but_i_am_a_idiot_any/"
+        target="_blank" rel="noopener noreferrer">thread</a> content and questions asked by said user is no longer
+    available, but based on the code I previously wrote, it looks like they were attempting to collect the following
+    details:
+<ul>
+    <li>First Name</li>
+    <li>Last Name</li>
+    <li>Email</li>
+    <li>Office Phone</li>
+    <li>Cell Phone</li>
+</ul>
+<br />
+Six years later, does this code still work?
+
+<figure class="screenshot">
+    <img src="/assets/images/reddit-florida-bar-scraper/screenshot1.png" alt="program output" />
+    <figcaption>Program output with questionable results</figcaption>
+</figure>
+
+🤔 Hmmm - let's debug!
+</p>
+
+<h2 id="debug">Debug</h2>
+<p>
+    To be honest, I was half-expecting either `0` or some form of HTTP exception. Let's troubleshoot and <i>maybe</i>
+    resolve this.
+</p>
+<p>
+    While debugging, line 37 returns with a `reason: Forbidden` from our GET Request of
+    <code>https://www.floridabar.org/directories/find-mbr/</code> with query parameters:
+    <code style="overflow-wrap: break-word; word-break: break-all;">?lName=&sdx=N&fName=&eligible=Y&deceased=N&firm=&locValue=Florida&locType=S&pracAreas=&lawSchool=&services=&langs=ENGL&certValue=&pageNumber=1&pageSize=50</code>.
+    Additionally, this exception isn't being returned properly to us through line 39.
+    <br />
+<figure class="screenshot">
+    <img src="/assets/images/reddit-florida-bar-scraper/screenshot2.png" alt="python code" />
+    <figcaption>Debugging Python code within VSCodium</figcaption>
+</figure>
+<br />
+Let's see what the response object returns.
+<figure class="screenshot">
+    <img src="/assets/images/reddit-florida-bar-scraper/screenshot3.png" alt="request response content" />
+    <figcaption>Response content from our Request</figcaption>
+</figure>
+<br />
+Okay, before we go down any rabbit holes, let's make a list of what we're seeing:
+<ol>
+    <li>HTTP 403 Forbidden Error (possibly due to cookies)</li>
+    <li>Review website to see if any fields/form changes occurred since 6 years ago</li>
+    <li>Errors are not being raised correctly</li>
+    <li>Code base still looks like a proof-of-concept &mdash; let's modernize it like a proper project</li>
+</ol>
+</p>
+
+
+<h2 id="modernize">Modernize Project</h2>
+<p>
+    First, let's bring this project from proof-of-concept to an actual project. Currently, my preference for managing
+    python projects is <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a>.
+    Let's make the following changes:
+<ol>
+    <li>Create uv project: <code>uv init</code></li>
+    <li>Pin to latest version of python (at the moment: 3.14): <code>uv python pin 3.14</code></li>
+    <li>Add dependencies: <code>uv add bs4 requests</code></li>
+</ol>
+</p>
+
+<h2 id="fix-httpclient">Fix HTTP Client</h2>
+<p>
+    From past experience, I haven't had to explicitly create a cookie store, but instead had to include some string of a UserAgent to my Request Headers. Adding one will make my request look more like a user request and less like a bot request.
+    <br>
+    To do so, we can change our request instance from a basic <i>request</i> object, to a <i>Session</i> enabling:
+    <ul>
+        <li>Cookie Management</li>
+        <li>Retry logic</li>
+    </ul>
+    <br>
+    While we're looking at the HTTP Client for this site, let's review the site's form to see if the field names and submission route have changed.
+    <br>
+    <figure class="screenshot">
+        <img src="/assets/images/reddit-florida-bar-scraper/screenshot4.png" alt="Screenshot of search form" />
+        <figcaption>Screenshot of search form</figcaption>
+    </figure>
+    Typically, form submission rely on the <i>name</i> attribute to generate payload properties to submit to some route, however, this form only has id's. At some point, these values are collected and paired with their appropriate names.
+    This can be seen within the <i>submitSearchForm</i> function located in the <i>member-search.js</i> file. We can review this form alongside our request URL.
+    <br>
+    <figure class="screenshot">
+        <img src="/assets/images/reddit-florida-bar-scraper/screenshot5.png" alt="Form submission" />
+        <figcaption>Screenshot of form submission</figcaption>
+    </figure>
+    <br>
+    The full script can be viewed at <a href="https://www.floridabar.org/app/plugins/tfb/public/js/member-search.js">member-search.js</a>, but below can be reviewed for the main logic.
+    <figure class="screenshot">
+        <img src="/assets/images/reddit-florida-bar-scraper/screenshot6.png" alt="member-search.js"/>
+        <figcaption>Snippet of member-search javascript file</figcaption>
+    </figure>
+
+    After comparing the above fields against what I currently have, it looks like the "langs" attribute can be added. For now, I'll default to "ENGL".
+    <figure class="screenshot">
+        <img src="/assets/images/reddit-florida-bar-scraper/Screenshot7.png" alt="updated form names" />
+        <figcaption>Snippet of python form names for submission</figcaption>
+    </figure>
+
+    Okay, let's do a basic search!
+    <figure class="screenshot">
+        <img src="/assets/images/reddit-florida-bar-scraper/Screenshot8.png" alt="Search with form values" />
+        <figcaption>Screenshot of search form values</figcaption>
+    </figure>
+
+    And what about the Bar ID #?
+    <figure class="screenshot">
+        <img src="/assets/images/reddit-florida-bar-scraper/Screenshot9.png" alt="Search with Bar Id #" />
+        <figcaption>Screenshot of search with Bar Id #</figcaption>
+    </figure>
+</p>
+
+<h2 id="code-cleanup">Code Cleanup</h2>
+<p>
+    Let's do the right thing, and cleanup this project. I want the following to be done:
+    <ol>
+        <li>General Code cleanup and restructure (move code or logic to more appropriate places)</li>
+        <li>Add basic testing</li>
+    </ol>
+    <br>
+
+    These items can be viewed at the following pull request: <a target="_blank" rel="noopener noreferrer" href="https://github.com/mlaguayojr/Laywer-Directory-Scraper/pull/1">https://github.com/mlaguayojr/Laywer-Directory-Scraper/pull/1</a>
+</p>
